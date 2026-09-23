@@ -2,9 +2,9 @@
 Proyecto semestral DUOC fullstack II
 
 ## Integrantes
-AXEL MATIAS CORTES MESIAS ax.cortesm@duocuc.cl
-CRISTOBAL RAMON HERMOSILLA ANDRADES cr.hermosillaa@duocuc.cl
-CARLOS FELIPE NECULMAN VILLARROEL Ca.neculman@duocuc.cl
+- AXEL MATIAS CORTES MESIAS ax.cortesm@duocuc.cl
+- CRISTOBAL RAMON HERMOSILLA ANDRADES cr.hermosillaa@duocuc.cl
+- CARLOS FELIPE NECULMAN VILLARROEL Ca.neculman@duocuc.cl
 
 ## Caso:
 Ferreteria Los Maestros (nombre cambiado a El Tarugo)
@@ -15,13 +15,6 @@ Se trata de una tienda actualmente puramente fisica la cual busca adaptarse a lo
 la tienda debe permitir registrarse e iniciar sesión, ver catalogo, carrito e historial de pedidos, panel de administrador y vendedor, permitir comunicarse y mostrar la información de contacto.
 ## Estructura de Carpetas.
 
-src/
-├── components/
-│   ├── atoms/
-│   ├── molecules/
-│   ├── organisms/
-│   └── templates/
-└── pages/
 
 ## Tecnologías
 - React + Vite
