@@ -1,16 +1,35 @@
-# React + Vite
+# Ferreteria-El-Tarugo
+Proyecto semestral DUOC fullstack II
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Integrantes
+AXEL MATIAS CORTES MESIAS ax.cortesm@duocuc.cl
+CRISTOBAL RAMON HERMOSILLA ANDRADES cr.hermosillaa@duocuc.cl
+CARLOS FELIPE NECULMAN VILLARROEL Ca.neculman@duocuc.cl
 
-Currently, two official plugins are available:
+## Caso:
+Ferreteria Los Maestros (nombre cambiado a El Tarugo)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Descripción del Caso.
+Ferretería Los Maestros es un negocio familiar con 22 años de trayectoria.
+Se trata de una tienda actualmente puramente fisica la cual busca adaptarse a los tiempos modernos mediante la creación de una tienda en linea
+la tienda debe permitir registrarse e iniciar sesión, ver catalogo, carrito e historial de pedidos, panel de administrador y vendedor, permitir comunicarse y mostrar la información de contacto.
+## Estructura de Carpetas.
 
-## React Compiler
+src/
+├── components/
+│   ├── atoms/
+│   ├── molecules/
+│   ├── organisms/
+│   └── templates/
+└── pages/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologías
+- React + Vite
+- React Bootstrap
 
-## Expanding the Oxlint configuration
+## Cómo ejecutar el proyecto
+npm install --Para cargar las dependencias
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Material Complementario
+- https://drive.google.com/drive/folders/1O1AH67Dr2NBIZvCtvRHHtCrjQp7M-8Rw?usp=sharing
