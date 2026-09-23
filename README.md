@@ -15,6 +15,7 @@ Se trata de una tienda actualmente puramente fisica la cual busca adaptarse a lo
 la tienda debe permitir registrarse e iniciar sesión, ver catalogo, carrito e historial de pedidos, panel de administrador y vendedor, permitir comunicarse y mostrar la información de contacto.
 ## Estructura de Carpetas.
 <img width="268" height="177" alt="{C7E7C966-F5DC-4052-BF71-DE99D0CDFBD7}" src="https://github.com/user-attachments/assets/5df943e6-aa61-409e-8c2f-50540b074f77" />
+
 ## Tecnologías
 - React + Vite
 - React Bootstrap
