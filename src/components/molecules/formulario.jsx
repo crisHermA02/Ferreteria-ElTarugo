@@ -1,15 +1,15 @@
-import boton from "../atoms/boton-enviar";
-import campo from "../atoms/campo";
+import Boton from "../atoms/boton-enviar";
+import Campo from "../atoms/campo";
 
 function formulario(props) {
   return (
-    <div className="formulario">
+    <form className="formulario">
       <label for="Correo">Correo Electronico</label>
-      <campo type="email" id="Correo" />
+      <Campo type="email" id="Correo" />
       <label for="Clave">Contraseña</label>
-      <campo type="password" id="Clave" />
-      <boton texto="Enviar" onClick={props.onEnviar} />
-    </div>
+      <Campo type="password" id="Clave" />
+      <Boton texto="Enviar" onClick={props.onEnviar} />
+    </form>
   );
 }
 
