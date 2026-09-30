@@ -1,4 +1,4 @@
-import Boton from "../atoms/boton-enviar";
+import Boton from "../atoms/boton";
 import Campo from "../atoms/campo";
 
 function formulario(props) {
