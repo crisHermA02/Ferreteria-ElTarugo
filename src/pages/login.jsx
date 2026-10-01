@@ -1,15 +1,21 @@
 import { Container, Row, Col } from "react-bootstrap";
-import panel from "../components/molecules/formulario";
+import Panel from "../components/molecules/formulario";
+import Nav from "../components/organism/nav";
 
-function Login(props) {
+function Login() {
+
   return (
-    <Container>
-      <Row>
-        <Col key={m.id} xs={12} md={6} lg={4} className="panel-login">
-        <Panel/>
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Nav titulo="El tarugo"/>
+
+      <Container className="mt-5">
+        <Row className="justify-content-center">
+          <Col xs={12} md={6} lg={4} className="panel-login">
+            <Panel />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
