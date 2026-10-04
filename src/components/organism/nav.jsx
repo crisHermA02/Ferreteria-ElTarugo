@@ -7,7 +7,6 @@ function Nav({ onNavegar, cantidadCarrito = 0 }) {
     setMenuAbierto(!menuAbierto);
   };
 
-  // Si la página padre pasa onNavegar, el link cambia de página sin recargar
   const ir = (destino) => (e) => {
     if (!onNavegar) return;
     e.preventDefault();
@@ -19,7 +18,7 @@ function Nav({ onNavegar, cantidadCarrito = 0 }) {
     <header className="bg-dark text-white border-bottom border-3 border-warning">
       <nav className="navbar navbar-expand-lg navbar-dark container py-2">
         <a className="navbar-brand d-flex align-items-center gap-2 text-white text-decoration-none" href="/src/inicio.jsx" onClick={ir("inicio")}>
-          <img src="/src/assets/logo-2.png" alt="Logo EL TARUGO" width="200" height="100" />
+          <img src="/src/assets/img/logo-2.png" alt="Logo EL TARUGO" width="200" height="100" />
         </a>
 
         <button className="navbar-toggler" type="button" onClick={toggleMenu} aria-controls="navBarTarugo" aria-expanded={menuAbierto} aria-label="Abrir navegación">

@@ -17,7 +17,7 @@ function App() {
     setCarrito((actual) => {
       const existente = actual.find((item) => item.codigo === producto.codigo)
       if (!existente) return [...actual, { codigo: producto.codigo, cantidad: 1 }]
-      if (existente.cantidad >= producto.stock) return actual // no pasar del stock disponible
+      if (existente.cantidad >= producto.stock) return actual
       return actual.map((item) =>
         item.codigo === producto.codigo ? { ...item, cantidad: item.cantidad + 1 } : item
       )

@@ -2,8 +2,6 @@ import Boton from '../atoms/boton';
 import EtiquetaStock from '../atoms/etiqueta-stock';
 import { formatearClp } from '../../utils/formato';
 
-// Props antiguas (imagen, titulo, precio, onAgregar) se mantienen;
-// el resto son opcionales y enriquecen la tarjeta para el catálogo.
 function TarjetaProducto(props) {
   const { imagen, titulo, marca, subcategoria, unidad, precio, stock, stockMinimo } = props;
   const sinStock = stock !== undefined && stock <= 0;
