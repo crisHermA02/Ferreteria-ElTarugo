@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "codigo": "MC001",
     "categoria": "Mat. Construcción",
     "subcategoria": "Cementos",
@@ -9,9 +10,11 @@
     "pCompraClp": 3200,
     "pVentaClp": 5990,
     "stock": 80,
-    "stockMinimo": 20
+    "stockMinimo": 20,
+    "imagen": "cemento-p-g-25.png"
   },
   {
+    "id": 2,
     "codigo": "MC002",
     "categoria": "Mat. Construcción",
     "subcategoria": "Cementos",
@@ -24,6 +27,7 @@
     "stockMinimo": 10
   },
   {
+    "id": 3,
     "codigo": "MC003",
     "categoria": "Mat. Construcción",
     "subcategoria": "Morteros",
@@ -36,6 +40,7 @@
     "stockMinimo": 15
   },
   {
+    "id": 4,
     "codigo": "MC004",
     "categoria": "Mat. Construcción",
     "subcategoria": "Morteros",
@@ -48,6 +53,7 @@
     "stockMinimo": 10
   },
   {
+    "id": 5,
     "codigo": "MC005",
     "categoria": "Mat. Construcción",
     "subcategoria": "Áridos",
@@ -60,6 +66,7 @@
     "stockMinimo": 20
   },
   {
+    "id": 6,
     "codigo": "MC006",
     "categoria": "Mat. Construcción",
     "subcategoria": "Áridos",
@@ -72,6 +79,7 @@
     "stockMinimo": 20
   },
   {
+    "id": 7,
     "codigo": "MC007",
     "categoria": "Mat. Construcción",
     "subcategoria": "Ladrillos",
@@ -81,9 +89,11 @@
     "pCompraClp": 190,
     "pVentaClp": 380,
     "stock": 500,
-    "stockMinimo": 100
+    "stockMinimo": 100,
+    "imagen": "ladrillo-fiscal.png"
   },
   {
+    "id": 8,
     "codigo": "MC008",
     "categoria": "Mat. Construcción",
     "subcategoria": "Ladrillos",
@@ -96,6 +106,7 @@
     "stockMinimo": 80
   },
   {
+    "id": 9,
     "codigo": "MC009",
     "categoria": "Mat. Construcción",
     "subcategoria": "Bloques",
@@ -108,6 +119,7 @@
     "stockMinimo": 50
   },
   {
+    "id": 10,
     "codigo": "MC010",
     "categoria": "Mat. Construcción",
     "subcategoria": "Bloques",
@@ -118,5 +130,117 @@
     "pVentaClp": 1690,
     "stock": 100,
     "stockMinimo": 30
+  },
+  {
+    "id": 11,
+    "codigo": "HE001",
+    "categoria": "Herramientas",
+    "subcategoria": "Herramientas manuales",
+    "nombreDelProducto": "Martillo de carpintero Stanley",
+    "marca": "Stanley",
+    "unidad": "Unidad",
+    "pCompraClp": 5200,
+    "pVentaClp": 8990,
+    "stock": 25,
+    "stockMinimo": 5,
+    "imagen": "martillo-carp-stan.png"
+  },
+  {
+    "id": 12,
+    "codigo": "HE002",
+    "categoria": "Herramientas",
+    "subcategoria": "Herramientas eléctricas",
+    "nombreDelProducto": "Taladro percutor Makita",
+    "marca": "Makita",
+    "unidad": "Unidad",
+    "pCompraClp": 48000,
+    "pVentaClp": 64990,
+    "stock": 8,
+    "stockMinimo": 3,
+    "imagen": "taladro-perc-makita.png"
+  },
+  {
+    "id": 13,
+    "codigo": "PI001",
+    "categoria": "Pinturas",
+    "subcategoria": "Látex",
+    "nombreDelProducto": "Látex extracubriente Sipa",
+    "marca": "Sipa",
+    "unidad": "Galón",
+    "pCompraClp": 11500,
+    "pVentaClp": 17990,
+    "stock": 30,
+    "stockMinimo": 8,
+    "imagen": "pintura-cipa-int.png"
+  },
+  {
+    "id": 14,
+    "codigo": "GA001",
+    "categoria": "Gasfitería",
+    "subcategoria": "Mangueras",
+    "nombreDelProducto": "Manguera de jardín Tigre",
+    "marca": "Tigre",
+    "unidad": "Rollo",
+    "pCompraClp": 7800,
+    "pVentaClp": 12990,
+    "stock": 15,
+    "stockMinimo": 5,
+    "imagen": "manguera-tigre.png"
+  },
+  {
+    "id": 15,
+    "codigo": "GA002",
+    "categoria": "Gasfitería",
+    "subcategoria": "Tubería PVC",
+    "nombreDelProducto": "Tubo PVC Tigre",
+    "marca": "Tigre",
+    "unidad": "Unidad",
+    "pCompraClp": 4200,
+    "pVentaClp": 6990,
+    "stock": 40,
+    "stockMinimo": 10,
+    "imagen": "pvc-tigre.png"
+  },
+  {
+    "id": 16,
+    "codigo": "EL001",
+    "categoria": "Electricidad",
+    "subcategoria": "Cables",
+    "nombreDelProducto": "Cable eléctrico Condulac",
+    "marca": "Condulac",
+    "unidad": "Rollo",
+    "pCompraClp": 16000,
+    "pVentaClp": 24990,
+    "stock": 12,
+    "stockMinimo": 4,
+    "imagen": "cable-condulac.png"
+  },
+  {
+    "id": 17,
+    "codigo": "SE001",
+    "categoria": "Seguridad",
+    "subcategoria": "Protección personal",
+    "nombreDelProducto": "Casco de seguridad blanco 3M",
+    "marca": "3M",
+    "unidad": "Unidad",
+    "pCompraClp": 2800,
+    "pVentaClp": 4990,
+    "stock": 0,
+    "stockMinimo": 10,
+    "imagen": "casco-blanc-3m.png"
+  },
+  {
+    "id": 18,
+    "codigo": "FI001",
+    "categoria": "Fijaciones",
+    "subcategoria": "Tornillos",
+    "nombreDelProducto": "Tornillo autoperforante Hilti",
+    "marca": "Hilti",
+    "unidad": "Unidad",
+    "pCompraClp": 45,
+    "pVentaClp": 90,
+    "stock": 600,
+    "stockMinimo": 200,
+    "imagen": "tornillo-autoper-hilti.png"
   }
 ]
