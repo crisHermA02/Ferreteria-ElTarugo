@@ -1,6 +1,6 @@
 import Boton from "../atoms/boton";
 
-function TarjetaBienvenida({ onLogin, onRegister }) {
+function TarjetaBienvenida({ onLogin, onRegister, onCatalogo }) {
     return (
         <div className="card shadow-sm border-0 p-4 mx-auto rounded-3 tarjeta-bienvenida-container">
             <section className="card-body">
@@ -8,6 +8,7 @@ function TarjetaBienvenida({ onLogin, onRegister }) {
                 <p className="text-muted mt-2">¡Ya llevamos 22 años trabajando y tenemos más de 800 productos en nuestro catálogo!</p>
 
                 <section className="d-flex flex-wrap gap-2 my-4">
+                    <Boton texto="Ver catálogo" variante="dark" onClick={onCatalogo} />
                     <Boton texto="Iniciar Sesión" variante="warning" onClick={onLogin} />
                     <Boton texto="Crear Cuenta" variante="warning" onClick={onRegister} />
                 </section>
