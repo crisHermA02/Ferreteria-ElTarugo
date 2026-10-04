@@ -24,7 +24,8 @@
     "pCompraClp": 4100,
     "pVentaClp": 7490,
     "stock": 40,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "imagen": "cemento-m-b-25.png"
   },
   {
     "id": 3,
@@ -37,7 +38,8 @@
     "pCompraClp": 2800,
     "pVentaClp": 5200,
     "stock": 50,
-    "stockMinimo": 15
+    "stockMinimo": 15,
+    "imagen":"mortero-cola-ceramica-25kg.png"
   },
   {
     "id": 4,
@@ -50,7 +52,8 @@
     "pCompraClp": 3500,
     "pVentaClp": 6490,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "imagen": "mortero-nivelador-piso-25kg.png"
   },
   {
     "id": 5,
@@ -63,7 +66,8 @@
     "pCompraClp": 800,
     "pVentaClp": 1800,
     "stock": 60,
-    "stockMinimo": 20
+    "stockMinimo": 20,
+    "imagen": "arena-fina-construccion-25kg.png"
   },
   {
     "id": 6,
@@ -76,7 +80,8 @@
     "pCompraClp": 700,
     "pVentaClp": 1500,
     "stock": 60,
-    "stockMinimo": 20
+    "stockMinimo": 20,
+    "imagen": "Ripio-25kg.png"
   },
   {
     "id": 7,
@@ -103,7 +108,8 @@
     "pCompraClp": 280,
     "pVentaClp": 550,
     "stock": 300,
-    "stockMinimo": 80
+    "stockMinimo": 80,
+    "imagen": "Ladrillo-prensado-6x14x29cm.png"
   },
   {
     "id": 9,
@@ -116,7 +122,8 @@
     "pCompraClp": 620,
     "pVentaClp": 1200,
     "stock": 200,
-    "stockMinimo": 50
+    "stockMinimo": 50,
+    "imagen": "bloque-de-hormigon-19x19x39cm.png"
   },
   {
     "id": 10,
@@ -129,7 +136,8 @@
     "pCompraClp": 890,
     "pVentaClp": 1690,
     "stock": 100,
-    "stockMinimo": 30
+    "stockMinimo": 30,
+    "imagen": "bloque-liviano-10x20x40cm.png"
   },
   {
     "id": 11,
