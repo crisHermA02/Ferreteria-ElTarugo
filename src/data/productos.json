@@ -25,7 +25,7 @@
     "pVentaClp": 7490,
     "stock": 40,
     "stockMinimo": 10,
-    "imagen": "cemento-m-b-25.png"
+    "imagen": "Cemento-Melón-blanco25kg.png"
   },
   {
     "id": 3,
@@ -39,7 +39,7 @@
     "pVentaClp": 5200,
     "stock": 50,
     "stockMinimo": 15,
-    "imagen":"mortero-cola-ceramica-25kg.png"
+    "imagen":"Mortero-cola-cerámica-25kg.png"
   },
   {
     "id": 4,
@@ -53,7 +53,7 @@
     "pVentaClp": 6490,
     "stock": 30,
     "stockMinimo": 10,
-    "imagen": "mortero-nivelador-piso-25kg.png"
+    "imagen": "Mortero-nivelador-piso-25kg.png"
   },
   {
     "id": 5,
@@ -67,7 +67,7 @@
     "pVentaClp": 1800,
     "stock": 60,
     "stockMinimo": 20,
-    "imagen": "arena-fina-construccion-25kg.png"
+    "imagen": "Arena-25-kg.png"
   },
   {
     "id": 6,
