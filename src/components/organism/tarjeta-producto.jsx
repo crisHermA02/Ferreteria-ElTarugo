@@ -14,23 +14,24 @@ function TarjetaProducto(props) {
           alt={titulo}
           loading="lazy"
           className="card-img-top bg-white p-3"
-          style={{ height: 200, objectFit: 'contain' }}
+          height={200}
+          objectFit="contain"
         />
       ) : (
         <div
           className="d-flex align-items-center justify-content-center bg-light text-muted small"
-          style={{ height: 200 }}
+          height={200}
         >
           Sin foto
         </div>
       )}
 
-      <div className="card-body d-flex flex-column">
+      <section className="card-body d-flex flex-column">
         {subcategoria && <p className="text-muted small mb-1">{subcategoria}</p>}
         <h3 className="h6 fw-bold mb-1">{titulo}</h3>
         {marca && <p className="text-muted small mb-2">{marca}</p>}
 
-        <div className="mt-auto">
+        <section className="mt-auto">
           <p className="fs-5 fw-bold mb-2">
             {formatearClp(precio)}
             {unidad && <span className="text-muted fs-6 fw-normal"> / {unidad.toLowerCase()}</span>}
@@ -45,8 +46,8 @@ function TarjetaProducto(props) {
             deshabilitado={sinStock}
             onClick={props.onAgregar}
           />
-        </div>
-      </div>
+        </section>
+      </section>
     </section>
   );
 }
