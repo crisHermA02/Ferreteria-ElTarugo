@@ -8,7 +8,6 @@ export function formatearClp(valor) {
     return clp.format(valor)
 }
 
-// Quita tildes y pasa a minúsculas para que "construccion" encuentre "Construcción"
 export function normalizar(texto) {
     return String(texto ?? '')
         .normalize('NFD')
