@@ -33,11 +33,11 @@ export function crearProducto(datos) {
 }
 
 export function actualizarProducto(id, cambios) {
-  const lista = leer().map((p) => (p.id === id ? { ...p, ...cambios } : p))
-  guardar(lista)
-  return lista.find((p) => p.id === id) ?? null
+    const lista = leer().map((p) => (p.id === id ? { ...p, ...cambios } : p))
+    guardar(lista)
+    return lista.find((p) => p.id === id) ?? null
 }
 
 export function eliminarProducto(id) {
-  guardar(leer().filter((p) => p.id !== id))
+    guardar(leer().filter((p) => p.id !== id))
 }

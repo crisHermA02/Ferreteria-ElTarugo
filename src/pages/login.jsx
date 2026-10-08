@@ -6,7 +6,7 @@ function Login() {
 
   return (
     <>
-      <Nav titulo="El tarugo"/>
+      <Nav titulo="El tarugo" />
 
       <Container className="mt-5">
         <Row className="justify-content-center">
