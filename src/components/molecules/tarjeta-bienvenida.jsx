@@ -1,4 +1,4 @@
-import Boton from "../atoms/boton";
+import { Boton } from "../atoms/boton";
 
 function TarjetaBienvenida({ onLogin, onRegister, onCatalogo }) {
     return (

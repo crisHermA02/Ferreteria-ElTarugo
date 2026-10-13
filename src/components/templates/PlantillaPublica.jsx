@@ -1,22 +1,32 @@
-import {useNavigate } from 'react-router-dom'; // Importa el hook para cambiar de rutas
-import nav from '../organism/nav'; // Los componentes deben iniciar con mayúscula (Nav)
-import footer from '../organism/footer'; // Los componentes deben iniciar con mayúscula (Footer)
+import { Container } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import { useCarrito } from '../../context/CarritoContext'
+import { useProductos } from '../../context/ProductosContext'
+import { categoriasDe } from '../../utils/categorias'
+import { Navbar } from '../organism/nav'
+import { Footer } from '../organism/footer'
 
-// Inicializa la función para navegar. Corregido: useNavigate() en lugar de useNaviagate()
-export function PlantillaPublica(props){
-    const navigate = useNaviagate();
+export function PlantillaPublica(props) {
 
-    return(
-        <>
-        <nav
-        categorias={categorias}
-        onNavegar={naviagate}
-        onBuscar={(texto) => navidate('/busqueda/${encodeURIComponent(texto)')}
-        />
-        <main className= "contenido">
-            {props.children}
-            </main>
-            <Footer onNavegar/>
-        </>
-    )
+  const navigate = useNavigate()
+  const productosCtx = useProductos()
+  const carrito = useCarrito()
+
+  return (
+    <>
+      <Navbar
+        categorias={categoriasDe(productosCtx.productos)}
+        totalItems={carrito.totalItems}
+        onNavegar={navigate}
+
+        onBuscar={(texto) => navigate(`/buscar/${encodeURIComponent(texto)}`)}
+      />
+      <Container fluid="xxl" as="main" className="tienda-main">
+        {props.children}
+      </Container>
+      <Footer/>
+    </>
+  )
 }
+
+export default PlantillaPublica

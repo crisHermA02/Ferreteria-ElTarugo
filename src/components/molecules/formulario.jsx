@@ -1,16 +1,22 @@
-import Boton from "../atoms/boton";
-import Campo from "../atoms/campo";
+import { Form } from 'react-bootstrap'
 
-function formulario(props) {
+export function CampoFormulario(props) {
+  const error = props.error ?? ''
+  const tipo = props.tipo ?? 'text'
+
   return (
-    <form className="formulario">
-      <label for="Correo">Correo Electronico</label>
-      <Campo type="email" id="Correo" />
-      <label for="Clave">Contraseña</label>
-      <Campo type="password" id="Clave" />
-      <Boton texto="Enviar" onClick={props.onEnviar} />
-    </form>
-  );
+    <Form.Group className="mb-3" controlId={props.id}>
+      <Form.Label>{props.etiqueta}</Form.Label>
+      <Form.Control
+        type={tipo}
+        value={props.valor}
+        onChange={(e) => props.onChange(e.target.value)}
+        isInvalid={error !== ''}
+        aria-invalid={error !== ''}
+      />
+      <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
+    </Form.Group>
+  )
 }
 
-export default formulario;
+export default CampoFormulario

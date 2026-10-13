@@ -1,4 +1,3 @@
-// Muestra la disponibilidad de un producto según su stock y su stock mínimo.
 function EtiquetaStock({ stock, stockMinimo }) {
     if (stock <= 0) {
         return <span className="badge text-bg-danger">Sin stock</span>;

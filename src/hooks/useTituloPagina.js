@@ -1,7 +1,7 @@
 import {useEffect} from'react';
 
-export function useTituloPgina(titulo){
+export function useTituloPagina(titulo){
     useEffect(()=> {
-        document.title = titulo ? '${titulo} - Ferreteria El Tarugo' : 'Ferreteria El Tarugo';
+        document.title = titulo ? `${titulo} - Ferreteria El Tarugo` : 'Ferreteria El Tarugo';
     }, [titulo]);
 }
