@@ -1,5 +1,6 @@
+import { useNavigate } from 'react-router-dom'
 import { useMemo, useState } from "react";
-import PlantillaPublica from "../components/templates/plantillaPublica";
+import PlantillaPublica from "../components/templates/PlantillaPublica";
 import TarjetaProducto from "../components/organism/tarjeta-producto";
 import FiltrosCatalogo from "../components/molecules/filtros-catalogo";
 import Boton from "../components/atoms/boton";
@@ -8,6 +9,8 @@ import { obtenerImagen } from "../utils/imagenes";
 import { normalizar } from "../utils/formato";
 
 function Catalogo({ onNavegar, onAgregar, cantidadCarrito }) {
+    const navigate = useNavigate();
+
     const { productos } = useProductos();
     const [busqueda, setBusqueda] = useState("");
     const [categoria, setCategoria] = useState("");

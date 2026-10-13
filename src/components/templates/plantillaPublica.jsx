@@ -1,8 +1,9 @@
-// src/components/templates/plantillaPublica.jsx
+import {useNavigate } from 'react-router-dom';
 import Nav from "../organism/nav";
 import Footer from "../organism/footer";
 
 function PlantillaPublica({ children, onNavegar, cantidadCarrito }) {
+  const navigate = useNavigate();
   return (
     <div className="d-flex flex-column min-vh-100 bg-light">
       <Nav onNavegar={onNavegar} cantidadCarrito={cantidadCarrito} />

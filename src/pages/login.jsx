@@ -1,5 +1,5 @@
 import { Row, Col } from "react-bootstrap";
-import PlantillaPublica from "../components/templates/plantillaPublica";
+import PlantillaPublica from "../components/templates/PlantillaPublica";
 import Panel from "../components/molecules/formulario";
 
 function Login({ onNavegar, cantidadCarrito }) {

@@ -1,44 +1,22 @@
-import { useState } from 'react'
-import './App.css'
-import { ProductosProvider } from './context/ProductosContext'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Inicio from './pages/Inicio'
 import Catalogo from './pages/Catalogo'
+import Producto from './pages/Producto'
+import Login from './pages/login'
+import NoEncontrada from './pages/NoEncontrada'
 
-function App() {
-  const [pagina, setPagina] = useState('inicio')
-  const [carrito, setCarrito] = useState([])
-
-  function navegar(destino) {
-    setPagina(destino)
-    window.scrollTo(0, 0)
-  }
-
-  function agregarAlCarrito(producto) {
-    setCarrito((actual) => {
-      const existente = actual.find((item) => item.codigo === producto.codigo)
-      if (!existente) return [...actual, { codigo: producto.codigo, cantidad: 1 }]
-      if (existente.cantidad >= producto.stock) return actual
-      return actual.map((item) =>
-        item.codigo === producto.codigo ? { ...item, cantidad: item.cantidad + 1 } : item
-      )
-    })
-  }
-
-  const cantidadCarrito = carrito.reduce((total, item) => total + item.cantidad, 0)
-
+export default function App() {
   return (
-    <ProductosProvider>
-      {pagina === 'catalogo' ? (
-        <Catalogo
-          onNavegar={navegar}
-          onAgregar={agregarAlCarrito}
-          cantidadCarrito={cantidadCarrito}
-        />
-      ) : (
-        <Inicio onNavegar={navegar} cantidadCarrito={cantidadCarrito} />
-      )}
-    </ProductosProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/catalogo" element={<Catalogo />} />
+        <Route path="/categoria/:nombre" element={<Catalogo />} />
+        <Route path="/buscar/:texto" element={<Catalogo />} />
+        <Route path="/producto/:id" element={<Producto />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NoEncontrada />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
-
-export default App
