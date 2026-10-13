@@ -26,10 +26,10 @@ export function Navbar(props) {
         <Container>
           <BarraBootstrap.Brand href="/" onClick={(e) => ir(e, '/')} className="me-lg-4 d-flex align-items-center">
             <img 
-              src="/src/assets/img/logo-2.png" 
+              src="/public/img/logo-2.png" 
               alt="Ferretería El Tarugo" 
               height="100" 
-              className="d-inline-block align-top me-2"
+              className="hero"
               onError={(e) => { e.target.style.display = 'none' }}
             />
             <h1 className="tienda-logo h4 m-0 text-white fw-bold">

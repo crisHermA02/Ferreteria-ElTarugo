@@ -1,10 +1,15 @@
-export function filtrarProductos(productos, filtros = {}) {
+export function filtrarProductos(productos = [], filtros = {}) {
   const buscado = (filtros.texto || '').trim().toLowerCase()
-  const categoria = filtros.categoria || ''
+  const categoriaBuscada = decodeURIComponent(filtros.categoria || '').trim().toLowerCase()
 
   return productos.filter((p) => {
-    const coincideTexto = buscado === '' || p.nombre.toLowerCase().includes(buscado)
-    const coincideCategoria = categoria === '' || p.categoria === categoria
+    const nombreProducto = (p?.nombre || '').toLowerCase()
+    const categoriaProducto = (p?.categoria || '').toLowerCase()
+
+    const coincideTexto = buscado === '' || nombreProducto.includes(buscado)
+    const coincideCategoria =
+      categoriaBuscada === '' || categoriaProducto === categoriaBuscada
+
     return coincideTexto && coincideCategoria
   })
 }

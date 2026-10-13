@@ -1,17 +1,16 @@
-import { Row, Col } from "react-bootstrap";
-import PlantillaPublica from "../components/templates/PlantillaPublica";
-import Panel from "../components/molecules/formulario";
+import { useNavigate } from 'react-router-dom'
+import { PlantillaPublica } from '../components/templates/PlantillaPublica'
+import { FormularioLogin } from '../components/organism/formularioLogin'
+import { useTituloPagina } from '../hooks/useTituloPagina'
 
-function Login({ onNavegar, cantidadCarrito }) {
+export default function Login() {
+  const navigate = useNavigate()
+  useTituloPagina('Ingresar')
+
   return (
-    <PlantillaPublica onNavegar={onNavegar} cantidadCarrito={cantidadCarrito}>
-      <Row className="justify-content-center">
-        <Col xs={12} md={6} lg={4} className="panel-login">
-          <Panel />
-        </Col>
-      </Row>
+    <PlantillaPublica>
+      <h2 className="h3 mb-3">Ingresar</h2>
+      <FormularioLogin onEnviar={() => navigate('/catalogo')} />
     </PlantillaPublica>
-  );
+  )
 }
-
-export default Login;

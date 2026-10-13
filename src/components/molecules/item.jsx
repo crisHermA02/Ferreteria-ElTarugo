@@ -7,10 +7,24 @@ export function Item(props) {
   const producto = props.producto
   const sinStock = producto.stock === 0
 
+  const obtenerRutaImagen = (src) => {
+    if (!src) return null
+    if (src.startsWith('http') || src.startsWith('/')) return src
+    return `/assets/img/${src.replace(/^imagenes\//, '')}`
+  }
+
   return (
     <Card as="article" className="card-producto h-100">
       {producto.imagen && (
-        <Card.Img variant="top" src={producto.imagen} alt="" className="card-producto__imagen" />
+        <Card.Img
+          variant="top"
+          src={obtenerRutaImagen(producto.imagen)}
+          alt={producto.nombre}
+          className="card-producto__imagen"
+          onError={(e) => {
+            e.target.style.display = 'none'
+          }}
+        />
       )}
       <Card.Body className="d-flex flex-column">
         <div className="mb-2 d-flex gap-2 flex-wrap">

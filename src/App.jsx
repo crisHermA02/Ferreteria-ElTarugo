@@ -6,6 +6,7 @@ import Carrito from './pages/Carrito'
 import Login from './pages/login'
 import AdminProductos from './pages/AdminProductos'
 import NoEncontrada from './pages/NoEncontrada'
+import Inicio from './pages/Inicio'
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
       <CarritoProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Catalogo />} />
+            <Route path="/" element={<Inicio />} />
             <Route path="/catalogo" element={<Catalogo />} />
             <Route path="/categoria/:nombre" element={<Catalogo />} />
             <Route path="/buscar/:texto" element={<Catalogo />} />

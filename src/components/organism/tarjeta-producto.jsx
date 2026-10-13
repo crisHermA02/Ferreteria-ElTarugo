@@ -1,13 +1,16 @@
 import { Row, Col } from 'react-bootstrap'
-import { Item } from '../molecules/item'
+import Item from '../molecules/item' 
 
 export function TarjetaProducto(props) {
-  if (props.productos.length === 0) {
-    return <p role="status">No hay productos que coincidan con tu búsqueda.</p>
+  const productos = props.productos || []
+
+  if (productos.length === 0) {
+    return <p role="status" className="text-muted my-4">No hay productos que coincidan con tu búsqueda.</p>
   }
+
   return (
     <Row className="g-4">
-      {props.productos.map((producto) => (
+      {productos.map((producto) => (
         <Col key={producto.id} sm={6} lg={4}>
           <Item producto={producto} onAdd={props.onAdd} />
         </Col>

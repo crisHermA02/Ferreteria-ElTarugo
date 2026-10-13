@@ -9,8 +9,11 @@ import { useTituloPagina } from '../hooks/useTituloPagina'
 export default function Catalogo() {
   const navigate = useNavigate()
   const params = useParams()
-  const nombre = params.nombre ?? ''
-  const texto = params.texto ?? ''
+  
+  // Decodifica correctamente la categoría y texto de la URL
+  const nombre = params.nombre ? decodeURIComponent(params.nombre) : ''
+  const texto = params.texto ? decodeURIComponent(params.texto) : ''
+  
   const productosCtx = useProductos()
   const carrito = useCarrito()
 
@@ -19,6 +22,7 @@ export default function Catalogo() {
   let titulo = 'Catálogo completo'
   if (nombre) titulo = nombre
   if (texto) titulo = `Resultados para "${texto}"`
+  
   useTituloPagina(titulo)
 
   return (

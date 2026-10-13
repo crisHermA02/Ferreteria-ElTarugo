@@ -8,7 +8,8 @@ function normalizarProductos(lista) {
     ...p,
     nombre: p.nombre ?? p.nombreDelProducto ?? '',
     precio: p.precio ?? p.pVentaClp ?? 0,
-    precioAnterior: p.precioAnterior ?? null
+    precioAnterior: p.precioAnterior ?? null,
+    imagen: p.imagen ? `/img/${p.imagen.replace(/^\/?(img\/)?/, '')}` : null
   }))
 }
 
