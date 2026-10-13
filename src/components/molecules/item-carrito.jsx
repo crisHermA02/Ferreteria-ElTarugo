@@ -1,7 +1,7 @@
-import { Button } from '../../atoms/Button/Button'
-import { formatoPrecio } from '../../../utils/formatoPrecio'
+import { Boton } from '../../atoms/boton'
+import { formatoPrecio } from '../../../utils/formato'
 
-export function CartItem(props) {
+export function ItemCarrito(props) {
   const item = props.item
   const subtotal = item.producto.precio * item.cantidad
 
@@ -13,12 +13,12 @@ export function CartItem(props) {
       </div>
       <span className="fw-bold">{formatoPrecio(subtotal)}</span>
       <div className="d-flex gap-2">
-        <Button variant="outline-secondary" onClick={() => props.onIncrement(item.producto.id)}>
+        <Boton variant="outline-secondary" onClick={() => props.onIncrement(item.producto.id)}>
           +
-        </Button>
-        <Button variant="danger" onClick={() => props.onRemove(item.producto.id)}>
+        </Boton>
+        <Boton variant="danger" onClick={() => props.onRemove(item.producto.id)}>
           Quitar
-        </Button>
+        </Boton>
       </div>
     </li>
   )

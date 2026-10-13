@@ -1,16 +1,10 @@
-const clp = new Intl.NumberFormat('es-CL', {
+export function formatoPrecio(precio) {
+  if (typeof precio !== 'number' || Number.isNaN(precio)) {
+    throw new TypeError('formatoPrecio espera un número')
+  }
+  return new Intl.NumberFormat('es-CL', {
     style: 'currency',
     currency: 'CLP',
     maximumFractionDigits: 0,
-})
-
-export function formatearClp(valor) {
-    return clp.format(valor)
-}
-
-export function normalizar(texto) {
-    return String(texto ?? '')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
+  }).format(precio)
 }

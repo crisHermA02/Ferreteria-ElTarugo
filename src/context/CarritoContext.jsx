@@ -1,8 +1,8 @@
 import { createContext, useContext, useState } from 'react'
 
-const CartContext = createContext(null)
+const CarritoContext = createContext(null)
 
-export function CartProvider(props) {
+export function CarritoProvider(props) {
   const [items, setItems] = useState([])
 
   function add(producto) {
@@ -32,13 +32,13 @@ export function CartProvider(props) {
 
   const valor = { items, add, remove, increment, totalItems, totalPrecio }
 
-  return <CartContext.Provider value={valor}>{props.children}</CartContext.Provider>
+  return <CarritoContext.Provider value={valor}>{props.children}</CarritoContext.Provider>
 }
 
-export function useCart() {
-  const contexto = useContext(CartContext)
+export function useCarrito() {
+  const contexto = useContext(CarritoContext)
   if (!contexto) {
-    throw new Error('useCart debe usarse dentro de un CartProvider')
+    throw new Error('useCarrito debe usarse dentro de un CarritoProvider')
   }
   return contexto
 }

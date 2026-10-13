@@ -1,14 +1,13 @@
-function boton(props) {
-  const variante = props.variante || "primary";
+export function Boton(props) {
+  const variant = props.variant ?? 'primary'
+  const type = props.type ?? 'button'
+  const disabled = props.disabled ?? false
+
   return (
-    <button
-      className={`btn btn-${variante} ${props.clase || ""}`}
-      onClick={props.onClick}
-      disabled={props.deshabilitado}
-    >
-      {props.texto}
+    <button type={type} className={`btn btn-${variant}`} onClick={props.onClick} disabled={disabled}>
+      {props.children}
     </button>
-  );
+  )
 }
 
-export default boton;
+export default Boton;
