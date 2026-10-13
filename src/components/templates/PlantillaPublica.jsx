@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { useCart } from '../../context/CarritoContext'
+import { useCarrito } from '../../context/CarritoContext'
 import { useProductos } from '../../context/ProductosContext'
 import { categoriasDe } from '../../utils/categorias'
 import { Navbar } from '../organism/nav'
@@ -10,7 +10,7 @@ export function PlantillaPublica(props) {
 
   const navigate = useNavigate()
   const productosCtx = useProductos()
-  const carrito = useCart()
+  const carrito = useCarrito()
 
   return (
     <>

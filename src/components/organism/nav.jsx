@@ -28,7 +28,7 @@ export function Navbar(props) {
             <img 
               src="/src/assets/img/logo-2.png" 
               alt="Ferretería El Tarugo" 
-              height="50" 
+              height="100" 
               className="d-inline-block align-top me-2"
               onError={(e) => { e.target.style.display = 'none' }}
             />
@@ -43,7 +43,7 @@ export function Navbar(props) {
             className="btn btn-outline-warning text-white ms-auto me-2 order-lg-last ms-lg-3 d-flex align-items-center gap-2"
             aria-label={`Carrito: ${props.totalItems ?? 0} artículos`}
           >
-            <span>🛒 Carrito</span>
+            <span>Carrito</span>
             <Badge tone="marca">{props.totalItems ?? 0}</Badge>
           </a>
           <BarraBootstrap.Toggle aria-controls="menu-principal" />

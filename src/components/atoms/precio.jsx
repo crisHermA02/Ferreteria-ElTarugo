@@ -1,4 +1,4 @@
-import { formatoPrecio } from '../../utils/formato-precio'
+import { formatoPrecio } from '../../utils/formato'
 
 export function Precio(props) {
   const anterior = props.anterior ?? null

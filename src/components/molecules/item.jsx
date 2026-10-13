@@ -3,7 +3,7 @@ import { Boton } from '../atoms/boton'
 import { Badge } from '../atoms/badge'
 import { Precio } from '../atoms/precio'
 
-export function ProductCard(props) {
+export function Item(props) {
   const producto = props.producto
   const sinStock = producto.stock === 0
 
@@ -35,3 +35,5 @@ export function ProductCard(props) {
     </Card>
   )
 }
+
+export default Item

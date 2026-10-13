@@ -18,3 +18,5 @@ export function CampoFormulario(props) {
     </Form.Group>
   )
 }
+
+export default CampoFormulario

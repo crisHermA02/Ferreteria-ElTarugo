@@ -1,6 +1,6 @@
 import { useCarrito } from '../../context/CarritoContext'
-import { ItemCarrito } from '../../molecules/item-carrito'
-import { formatoPrecio } from '../../../utils/formatoPrecio'
+import { ItemCarrito } from '../molecules/item-carrito'
+import { formatoPrecio } from '../../utils/formato'
 
 export function Carro() {
   const carrito = useCarrito()

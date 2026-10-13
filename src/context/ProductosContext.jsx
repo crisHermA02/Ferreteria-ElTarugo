@@ -1,23 +1,35 @@
-
 import { createContext, useContext, useState } from 'react'
-
 import * as productoService from '../services/productoService'
+
 const ProductosContext = createContext(null)
 
-export function ProductosProvider(props) {
+function normalizarProductos(lista) {
+  return lista.map((p) => ({
+    ...p,
+    nombre: p.nombre ?? p.nombreDelProducto ?? '',
+    precio: p.precio ?? p.pVentaClp ?? 0,
+    precioAnterior: p.precioAnterior ?? null
+  }))
+}
 
-  const [productos, setProductos] = useState(() => productoService.listarProductos())
+export function ProductosProvider(props) {
+  const [productos, setProductos] = useState(() =>
+    normalizarProductos(productoService.listarProductos())
+  )
+
   function crear(datos) {
     productoService.crearProducto(datos)
-    setProductos(productoService.listarProductos())
+    setProductos(normalizarProductos(productoService.listarProductos()))
   }
+
   function actualizar(id, cambios) {
     productoService.actualizarProducto(id, cambios)
-    setProductos(productoService.listarProductos())
+    setProductos(normalizarProductos(productoService.listarProductos()))
   }
+
   function eliminar(id) {
     productoService.eliminarProducto(id)
-    setProductos(productoService.listarProductos())
+    setProductos(normalizarProductos(productoService.listarProductos()))
   }
 
   return (

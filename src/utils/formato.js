@@ -1,10 +1,13 @@
 export function formatoPrecio(precio) {
-  if (typeof precio !== 'number' || Number.isNaN(precio)) {
-    throw new TypeError('formatoPrecio espera un número')
+  const numero = Number(precio)
+
+  if (typeof precio !== 'number' || Number.isNaN(numero)) {
+    return '$0' // O un texto por defecto como 'N/A' o '-'
   }
+
   return new Intl.NumberFormat('es-CL', {
     style: 'currency',
     currency: 'CLP',
     maximumFractionDigits: 0,
-  }).format(precio)
+  }).format(numero)
 }

@@ -1,5 +1,5 @@
-import { Boton } from '../../atoms/boton'
-import { formatoPrecio } from '../../../utils/formato'
+import { Boton } from '../atoms/boton'
+import { formatoPrecio } from '../../utils/formato'
 
 export function ItemCarrito(props) {
   const item = props.item
