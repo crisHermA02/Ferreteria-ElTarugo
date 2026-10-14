@@ -8,9 +8,9 @@ function TarjetaBienvenida({ onLogin, onRegister, onCatalogo }) {
                 <p className="text-muted mt-2">¡Ya llevamos 22 años trabajando y tenemos más de 800 productos en nuestro catálogo!</p>
 
                 <section className="d-flex flex-wrap gap-2 my-4">
-                    <Boton texto="Ver catálogo" variante="dark" onClick={onCatalogo} />
-                    <Boton texto="Iniciar Sesión" variante="warning" onClick={onLogin} />
-                    <Boton texto="Crear Cuenta" variante="warning" onClick={onRegister} />
+                    <Boton variant="dark" onClick={onCatalogo}>Ver catálogo</Boton>
+                    <Boton variant="warning" onClick={onLogin}>Iniciar Sesión</Boton>
+                    <Boton variant="warning" onClick={onRegister}>Crear Cuenta</Boton>
                 </section>
 
                 <section className="mt-4">
