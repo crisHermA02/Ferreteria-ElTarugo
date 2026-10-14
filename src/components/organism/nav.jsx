@@ -23,7 +23,7 @@ export function Navbar(props) {
   return (
     <header className="border-bottom border-3 border-warning">
       <BarraBootstrap expand="lg" className="tienda-topbar bg-dark navbar-dark py-2">
-        <Container>
+        <Container className="flex-wrap">
           <BarraBootstrap.Brand href="/" onClick={(e) => ir(e, '/')} className="me-lg-4 d-flex align-items-center">
             <img 
               src="src/assets/img/logo-2.png" 
@@ -40,7 +40,7 @@ export function Navbar(props) {
           <a
             href="/carrito"
             onClick={(e) => ir(e, '/carrito')}
-            className="btn btn-outline-warning text-white ms-auto me-2 order-lg-last ms-lg-3 d-flex align-items-center gap-2"
+            className="btn btn-outline-warning text-white ms-auto me-2 ms-lg-3 d-flex align-items-center gap-2"
             aria-label={`Carrito: ${props.totalItems ?? 0} artículos`}
           >
             <span>Carrito</span>
@@ -48,7 +48,7 @@ export function Navbar(props) {
           </a>
           <BarraBootstrap.Toggle aria-controls="menu-principal" />
 
-          <BarraBootstrap.Collapse id="menu-principal">
+          <BarraBootstrap.Collapse id="menu-principal" className="w-100">
             <Form className="buscador flex-grow-1 my-3 my-lg-0 mx-lg-3" role="search" onSubmit={buscar}>
               <div className="input-group">
                 <Form.Control
@@ -71,12 +71,12 @@ export function Navbar(props) {
               <Nav.Link href="/cuenta" onClick={(e) => ir(e, '/cuenta')}>
                 Cuenta
               </Nav.Link>
-              <Nav.Link href="/login" onClick={(e) => ir(e, '/login')} className="btn btn-sm btn-outline-light px-3 ms-lg-2">
+              <a href="/login" onClick={(e) => ir(e, '/login')} className="btn btn-sm btn-outline-light px-3 ms-lg-2">
                 Ingresar
-              </Nav.Link>
-              <Nav.Link href="/registro" onClick={(e) => ir(e, '/registro')} className="btn btn-sm btn-warning text-dark fw-bold px-3">
+              </a>
+              <a href="/registro" onClick={(e) => ir(e, '/registro')} className="btn btn-sm btn-warning fw-bold px-3">
                 Registrarse
-              </Nav.Link>
+              </a>
             </Nav>
           </BarraBootstrap.Collapse>
         </Container>
