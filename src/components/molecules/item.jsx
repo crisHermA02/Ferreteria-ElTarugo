@@ -7,18 +7,12 @@ export function Item(props) {
   const producto = props.producto
   const sinStock = producto.stock === 0
 
-  const obtenerRutaImagen = (src) => {
-    if (!src) return null
-    if (src.startsWith('http') || src.startsWith('/')) return src
-    return `/assets/img/${src.replace(/^imagenes\//, '')}`
-  }
-
   return (
     <Card as="article" className="card-producto h-100">
       {producto.imagen && (
         <Card.Img
           variant="top"
-          src={obtenerRutaImagen(producto.imagen)}
+          src={`/src/assets/img/${producto.imagen}`}
           alt={producto.nombre}
           className="card-producto__imagen"
           onError={(e) => {

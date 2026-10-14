@@ -21,7 +21,7 @@ export function PlantillaPublica(props) {
 
         onBuscar={(texto) => navigate(`/buscar/${encodeURIComponent(texto)}`)}
       />
-      <Container fluid="xxl" as="main" className="tienda-main">
+      <Container as="main" className="tienda-main">
         {props.children}
       </Container>
       <Footer/>
