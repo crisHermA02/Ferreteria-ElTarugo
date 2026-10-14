@@ -26,7 +26,7 @@ export function Navbar(props) {
         <Container>
           <BarraBootstrap.Brand href="/" onClick={(e) => ir(e, '/')} className="me-lg-4 d-flex align-items-center">
             <img 
-              src="/public/img/logo-2.png" 
+              src="src/assets/img/logo-2.png" 
               alt="Ferretería El Tarugo" 
               height="100" 
               className="hero"
