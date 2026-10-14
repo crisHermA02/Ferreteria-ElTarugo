@@ -19,10 +19,12 @@ export function FormularioLogin(props) {
     }
 
     return (
-        <Form onSubmit={manejarEnvio} noValidate>
+        <Form onSubmit={manejarEnvio} noValidate className="text-start">
             <CampoFormulario id="login-email" etiqueta="Correo" tipo="email" valor={email} onChange={setEmail} error={errores.email} />
             <CampoFormulario id="login-clave" etiqueta="Clave" tipo="password" valor={clave} onChange={setClave} error={errores.clave} />
-            <Boton type="submit">Ingresar</Boton>
+            <div className="d-grid mt-4">
+                <Boton type="submit" variant="warning">Ingresar</Boton>
+            </div>
         </Form>
     )
 }
