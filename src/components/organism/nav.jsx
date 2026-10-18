@@ -1,10 +1,24 @@
 import { useState } from 'react'
 import { Container, Form, Nav, Navbar as BarraBootstrap } from 'react-bootstrap'
 import { Badge } from '../atoms/badge'
+import logo from '../../assets/img/logo-2.png'
 
 export function Navbar(props) {
   const [texto, setTexto] = useState('')
   const categorias = props.categorias ?? []
+  const rutaActual = decodificar(props.rutaActual ?? '')
+
+  function decodificar(ruta) {
+    try {
+      return decodeURIComponent(ruta)
+    } catch {
+      return ruta
+    }
+  }
+
+  function claseCategoria(activa) {
+    return `nav-link ${activa ? 'text-dark fw-semibold' : 'text-secondary'}`
+  }
 
   function ir(evento, ruta) {
     evento.preventDefault()
@@ -21,12 +35,12 @@ export function Navbar(props) {
   }
 
   return (
-    <header className="border-bottom border-3 border-warning">
+    <header className="sticky-lg-top border-bottom border-3 border-warning">
       <BarraBootstrap expand="lg" className="tienda-topbar bg-dark navbar-dark py-2">
         <Container className="flex-wrap">
           <BarraBootstrap.Brand href="/" onClick={(e) => ir(e, '/')} className="me-lg-4 d-flex align-items-center">
             <img 
-              src="src/assets/img/logo-2.png" 
+              src={logo} 
               alt="Ferretería El Tarugo" 
               height="100" 
               className="hero"
@@ -39,6 +53,7 @@ export function Navbar(props) {
 
           <a
             href="/carrito"
+            data-carrito
             onClick={(e) => ir(e, '/carrito')}
             className="btn btn-outline-warning text-white ms-auto me-2 ms-lg-3 d-flex align-items-center gap-2"
             aria-label={`Carrito: ${props.totalItems ?? 0} artículos`}
@@ -86,13 +101,23 @@ export function Navbar(props) {
         <Container>
           <ul className="nav flex-nowrap overflow-auto">
             <li className="nav-item">
-              <a className="nav-link text-dark fw-semibold" href="/catalogo" onClick={(e) => ir(e, '/catalogo')}>
+              <a
+                className={claseCategoria(rutaActual === '/catalogo')}
+                aria-current={rutaActual === '/catalogo' ? 'page' : undefined}
+                href="/catalogo"
+                onClick={(e) => ir(e, '/catalogo')}
+              >
                 Ver Todo el Catálogo
               </a>
             </li>
             {categorias.map((c) => (
               <li key={c} className="nav-item">
-                <a className="nav-link text-secondary" href={`/categoria/${c}`} onClick={(e) => ir(e, `/categoria/${c}`)}>
+                <a
+                  className={claseCategoria(rutaActual === `/categoria/${c}`)}
+                  aria-current={rutaActual === `/categoria/${c}` ? 'page' : undefined}
+                  href={`/categoria/${c}`}
+                  onClick={(e) => ir(e, `/categoria/${c}`)}
+                >
                   {c}
                 </a>
               </li>
