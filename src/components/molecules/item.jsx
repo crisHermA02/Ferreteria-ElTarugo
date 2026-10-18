@@ -1,11 +1,28 @@
+import { useEffect, useRef, useState } from 'react'
 import { Card } from 'react-bootstrap'
 import { Boton } from '../atoms/boton'
 import { Badge } from '../atoms/badge'
 import { Precio } from '../atoms/precio'
+import { rebotar, volarAlCarrito } from '../../utils/animaciones'
 
 export function Item(props) {
   const producto = props.producto
   const sinStock = producto.stock === 0
+  const [agregado, setAgregado] = useState(false)
+  const temporizador = useRef(null)
+
+  useEffect(() => () => clearTimeout(temporizador.current), [])
+
+  function agregar(evento) {
+    const boton = evento.currentTarget
+    props.onAdd(producto)
+
+    setAgregado(true)
+    rebotar(boton)
+    volarAlCarrito(boton)
+    clearTimeout(temporizador.current)
+    temporizador.current = setTimeout(() => setAgregado(false), 1300)
+  }
 
   return (
     <Card as="article" className="card-producto h-100">
@@ -34,9 +51,9 @@ export function Item(props) {
             <Badge tone="success">{producto.stock} disponibles</Badge>
           )}
         </p>
-        <div className="mt-auto d-grid">
-          <Boton onClick={() => props.onAdd(producto)} disabled={sinStock}>
-            Agregar al carrito
+        <div className="mt-auto d-grid" aria-live="polite">
+          <Boton variant={agregado ? 'success' : 'primary'} onClick={agregar} disabled={sinStock}>
+            {agregado ? '✓ Agregado' : 'Agregar al carrito'}
           </Boton>
         </div>
       </Card.Body>
