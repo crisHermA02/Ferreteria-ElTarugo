@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useCarrito } from '../../context/CarritoContext'
 import { useProductos } from '../../context/ProductosContext'
 import { categoriasDe } from '../../utils/categorias'
@@ -9,6 +9,7 @@ import { Footer } from '../organism/footer'
 export function PlantillaPublica(props) {
 
   const navigate = useNavigate()
+  const ubicacion = useLocation()
   const productosCtx = useProductos()
   const carrito = useCarrito()
 
@@ -18,6 +19,7 @@ export function PlantillaPublica(props) {
         categorias={categoriasDe(productosCtx.productos)}
         totalItems={carrito.totalItems}
         onNavegar={navigate}
+        rutaActual={ubicacion.pathname}
 
         onBuscar={(texto) => navigate(`/buscar/${encodeURIComponent(texto)}`)}
       />

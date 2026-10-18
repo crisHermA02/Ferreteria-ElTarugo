@@ -11,7 +11,7 @@ export function TarjetaProducto(props) {
   return (
     <Row className="g-4">
       {productos.map((producto) => (
-        <Col key={producto.id} sm={6} lg={4}>
+        <Col key={producto.id} sm={6} lg={4} xl={3}>
           <Item producto={producto} onAdd={props.onAdd} />
         </Col>
       ))}
