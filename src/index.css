@@ -57,10 +57,6 @@ body {
   background-attachment: fixed;
 }
 
-nav {
-  background-image: url('./assets/fondo-blanco.jpg');
-  background-repeat: repeat;
-}
 
 #root {
   width: 1126px;
