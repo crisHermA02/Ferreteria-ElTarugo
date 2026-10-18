@@ -68,11 +68,120 @@ body {
   box-sizing: border-box;
 }
 
+/* Formato panorámico (16:9): el contenido aprovecha casi todo el ancho */
 .container {
   max-width: 1600px;
-  padding-inline: 1.5rem;
+  padding-inline: 1rem;
 }
 
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* Las categorías nunca se parten en varias líneas: se desplazan de lado */
+.tienda-categorias .nav-link {
+  white-space: nowrap;
+}
+
+/* Barra superior en celular y tablet: una sola fila compacta
+   [logo] [buscador] [carrito] [menú]; los enlaces salen al abrir el menú */
+@media (max-width: 991.98px) {
+  .tienda-topbar .navbar-brand {
+    order: 1;
+    margin-right: 0;
+  }
+
+  .tienda-topbar .navbar-brand img {
+    height: 46px;
+    width: auto;
+  }
+
+  .tienda-topbar .tienda-logo {
+    font-size: 1rem;
+    line-height: 1.1;
+    margin-left: 0.5rem !important;
+    text-align: left;
+  }
+
+  .tienda-topbar .tienda-buscador {
+    order: 2;
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0 0.4rem;
+  }
+
+  .tienda-topbar .tienda-buscador .form-control {
+    text-overflow: ellipsis;
+  }
+
+  .tienda-topbar .tienda-buscador .form-control,
+  .tienda-topbar .tienda-buscador .btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .tienda-topbar [data-carrito] {
+    order: 3;
+    padding: 0.3rem 0.45rem;
+  }
+
+  .tienda-topbar .navbar-toggler {
+    order: 4;
+    margin-left: 0.4rem;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .tienda-topbar .navbar-collapse {
+    order: 5;
+    /* Con el menú abierto, la barra nunca pasa del alto de la pantalla */
+    max-height: calc(100svh - 8rem);
+    overflow-y: auto;
+  }
+
+  .tienda-topbar .navbar-collapse .navbar-nav {
+    padding: 0.5rem 0 0.25rem;
+  }
+
+  .tienda-categorias .nav-link {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Barra superior en escritorio: fila 1 = logo + carrito, fila 2 = buscador + enlaces */
+@media (min-width: 992px) {
+  .tienda-topbar .navbar-brand {
+    order: 1;
+    margin-right: 1.5rem;
+  }
+
+  .tienda-topbar [data-carrito] {
+    order: 2;
+    margin: 0 0.5rem 0 1rem;
+  }
+
+  /* Salto de línea entre la fila 1 y la fila 2 */
+  .tienda-topbar .container::before {
+    content: '';
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .tienda-topbar .tienda-buscador {
+    order: 4;
+    flex: 1 1 auto;
+    margin: 0 1rem;
+  }
+
+  .tienda-topbar .navbar-collapse {
+    order: 5;
+    flex-grow: 0;
+  }
+}
+
+/* Tarjetas de producto: todas las imágenes ocupan una caja del mismo tamaño */
 .card-producto__caja {
   aspect-ratio: 4 / 3;
   display: flex;
@@ -102,6 +211,7 @@ body {
   color: #adb5bd;
 }
 
+/* El nombre reserva 2 líneas para que precios y botones queden alineados */
 .card-producto .card-title {
   min-height: 2.4em;
 }
