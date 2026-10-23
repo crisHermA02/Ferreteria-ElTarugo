@@ -2,12 +2,12 @@ import { describe, it, expect } from 'vitest'
 import { formatoPrecio } from './formato'
 
 describe('formatoPrecio', () => {
-  it('1. Retorna "$0" si el precio no es un número válido', () => {
-    expect(formatoPrecio('invalid_number')).toBe('$0')
+  it('Asigna el formato de moneda en pesos chilenos a un número válido', () => {
+    expect(formatoPrecio(1800)).toBe('$1.800')
   })
 
-  it('2. Formatea un número correctamente a formato de moneda CLP', () => {
-    const resultado = formatoPrecio(25000)
-    expect(resultado).toContain('25')
+  it('Retorna "$0" cuando recibe un valor que no se puede convertir a número', () => {
+    expect(formatoPrecio('texto_invalido')).toBe('$0')
+    expect(formatoPrecio(NaN)).toBe('$0')
   })
 })

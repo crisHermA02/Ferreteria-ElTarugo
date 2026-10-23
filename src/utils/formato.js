@@ -2,7 +2,7 @@ export function formatoPrecio(precio) {
   const numero = Number(precio)
 
   if (typeof precio !== 'number' || Number.isNaN(numero)) {
-    return '$0' // O un texto por defecto como 'N/A' o '-'
+    return '$0'
   }
 
   return new Intl.NumberFormat('es-CL', {

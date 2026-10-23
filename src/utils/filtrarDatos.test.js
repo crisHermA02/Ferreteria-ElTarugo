@@ -3,18 +3,19 @@ import { filtrarProductos } from './filtrarDatos'
 
 describe('filtrarProductos', () => {
   const productosMock = [
-    { id: 1, nombre: 'Ladrillo Prensado', categoria: 'Obra Gruesa' },
-    { id: 2, nombre: 'Mortero Nivelador', categoria: 'Obra Gruesa' },
-    { id: 3, nombre: 'Martillo Stanley', categoria: 'Herramientas' },
+    { id: 1, nombre: 'Cemento Melón 25kg', categoria: 'Obra Gruesa' },
+    { id: 2, nombre: 'Taladro Makita', categoria: 'Herramientas' },
   ]
 
-  it('7. Filtra la lista por texto de búsqueda y por categoría', () => {
-    const filtroTexto = filtrarProductos(productosMock, { texto: 'ladrillo' })
-    expect(filtroTexto).toHaveLength(1)
-    expect(filtroTexto[0].id).toBe(1)
+  it('Filtra por coincidencia de texto ignorando mayúsculas y minúsculas', () => {
+    const resultado = filtrarProductos(productosMock, { texto: 'CEMENTO' })
+    expect(resultado).toHaveLength(1)
+    expect(resultado[0].nombre).toBe('Cemento Melón 25kg')
+  })
 
-    const filtroCategoria = filtrarProductos(productosMock, { categoria: 'Herramientas' })
-    expect(filtroCategoria).toHaveLength(1)
-    expect(filtroCategoria[0].nombre).toBe('Martillo Stanley')
+  it('Filtra exactamente por la categoría indicada en los parámetros', () => {
+    const resultado = filtrarProductos(productosMock, { categoria: 'Herramientas' })
+    expect(resultado).toHaveLength(1)
+    expect(resultado[0].nombre).toBe('Taladro Makita')
   })
 })
