@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export function Footer() {
     return (
         <footer className="bg-dark text-white py-4 mt-auto">
@@ -7,7 +9,17 @@ export function Footer() {
                 <p className="mb-1 small"><strong>Teléfono:</strong> +56 51 234 5678</p>
                 <p className="mb-1 small"><strong>Correo:</strong> contacto@eltarugo.cl</p>
                 <p className="mb-3 small"><strong>Horario:</strong> Lunes a Sábado de 9:00 a 19:00 hrs</p>
-                <p className="mb-0 small"> &copy; Ferreteria el Tarugo- 2026</p>
+
+                <div className="mb-2">
+                    <Link to="/contacto" className="text-warning text-decoration-none small me-3">
+                        Contacto y Ubicación
+                    </Link>
+                    <Link to="/admin/productos" className="text-warning text-decoration-none small">
+                        Admin Productos
+                    </Link>
+                </div>
+
+                <p className="mb-0 small">&copy; Ferreteria el Tarugo- 2026</p>
             </div>
         </footer>
     );

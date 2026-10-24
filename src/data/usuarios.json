@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "nombre": "Administrador",
+    "email": "admin@eltarugo.cl",
+    "clave": "admin123",
+    "rol": "Administrador"
+  },
+  {
+    "id": 2,
+    "nombre": "Juan Pérez",
+    "email": "juan@gmail.com",
+    "clave": "cliente123",
+    "rol": "Cliente"
+  }
+]

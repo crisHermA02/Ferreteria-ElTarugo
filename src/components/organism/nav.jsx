@@ -1,39 +1,19 @@
-import { useState } from 'react'
-import { Container, Form, Nav, Navbar as BarraBootstrap } from 'react-bootstrap'
+import { Container, Nav, Navbar as BarraBootstrap } from 'react-bootstrap'
 import { Badge } from '../atoms/badge'
 import logo from '../../assets/img/logo-2.png'
+import { decodificarRuta } from '../../utils/navegacion'
+import { useNavbar } from '../../hooks/useNavbar'
+import { useAuth } from '../../context/AuthContext'
+import { NavBuscador } from '../molecules/NavBuscador'
+import { NavMenuUsuario } from '../molecules/NavMenuUsuario'
+import { NavCategorias } from '../molecules/NavCategorias'
 
 export function Navbar(props) {
-  const [texto, setTexto] = useState('')
+  const { texto, setTexto, ir, buscar } = useNavbar(props)
+  const { usuario, logout } = useAuth()
+  
   const categorias = props.categorias ?? []
-  const rutaActual = decodificar(props.rutaActual ?? '')
-
-  function decodificar(ruta) {
-    try {
-      return decodeURIComponent(ruta)
-    } catch {
-      return ruta
-    }
-  }
-
-  // Categoría activa en negro, el resto en gris
-  function claseCategoria(activa) {
-    return `nav-link ${activa ? 'text-dark fw-semibold' : 'text-secondary'}`
-  }
-
-  function ir(evento, ruta) {
-    evento.preventDefault()
-    if (props.onNavegar) {
-      props.onNavegar(ruta)
-    }
-  }
-
-  function buscar(evento) {
-    evento.preventDefault()
-    if (texto.trim() !== '' && props.onBuscar) {
-      props.onBuscar(texto.trim())
-    }
-  }
+  const rutaActual = decodificarRuta(props.rutaActual ?? '')
 
   return (
     <header className="sticky-top border-bottom border-3 border-warning">
@@ -52,24 +32,7 @@ export function Navbar(props) {
             </h1>
           </BarraBootstrap.Brand>
 
-          <Form className="buscador tienda-buscador" role="search" onSubmit={buscar}>
-            <div className="input-group">
-              <Form.Control
-                type="search"
-                placeholder="Buscar productos…"
-                aria-label="Buscar productos"
-                value={texto}
-                onChange={(e) => setTexto(e.target.value)}
-              />
-              <button type="submit" className="btn btn-warning fw-bold" aria-label="Buscar">
-                <span className="d-none d-lg-inline">Buscar</span>
-                <svg className="d-lg-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-              </button>
-            </div>
-          </Form>
+          <NavBuscador texto={texto} setTexto={setTexto} buscar={buscar} />
 
           <a
             href="/carrito"
@@ -86,55 +49,23 @@ export function Navbar(props) {
             <span className="d-none d-lg-inline">Carrito</span>
             <Badge tone="marca">{props.totalItems ?? 0}</Badge>
           </a>
+          
           <BarraBootstrap.Toggle aria-controls="menu-principal" />
 
           <BarraBootstrap.Collapse id="menu-principal">
-            <Nav className="gap-2 align-items-lg-center">
-              <Nav.Link href="/mis-pedidos" onClick={(e) => ir(e, '/mis-pedidos')}>
-                Mis Pedidos
-              </Nav.Link>
-              <Nav.Link href="/cuenta" onClick={(e) => ir(e, '/cuenta')}>
-                Cuenta
-              </Nav.Link>
-              <a href="/login" onClick={(e) => ir(e, '/login')} className="btn btn-sm btn-outline-light px-3 ms-lg-2">
-                Ingresar
-              </a>
-              <a href="/registro" onClick={(e) => ir(e, '/registro')} className="btn btn-sm btn-warning fw-bold px-3">
-                Registrarse
-              </a>
+            <Nav className="gap-2 align-items-lg-center mt-3 mt-lg-0 ms-lg-auto">
+              <Nav.Link href="/" onClick={(e) => ir(e, '/')}>Nosotros</Nav.Link>
+              <Nav.Link href="/contacto" onClick={(e) => ir(e, '/contacto')}>Contacto</Nav.Link>
+              
+              <NavMenuUsuario usuario={usuario} ir={ir} logout={logout} />
             </Nav>
           </BarraBootstrap.Collapse>
         </Container>
       </BarraBootstrap>
 
-      <nav className="tienda-categorias bg-light border-bottom py-1" aria-label="Categorías">
-        <Container>
-          <ul className="nav flex-nowrap overflow-auto">
-            <li className="nav-item">
-              <a
-                className={claseCategoria(rutaActual === '/catalogo')}
-                aria-current={rutaActual === '/catalogo' ? 'page' : undefined}
-                href="/catalogo"
-                onClick={(e) => ir(e, '/catalogo')}
-              >
-                Ver Todo el Catálogo
-              </a>
-            </li>
-            {categorias.map((c) => (
-              <li key={c} className="nav-item">
-                <a
-                  className={claseCategoria(rutaActual === `/categoria/${c}`)}
-                  aria-current={rutaActual === `/categoria/${c}` ? 'page' : undefined}
-                  href={`/categoria/${c}`}
-                  onClick={(e) => ir(e, `/categoria/${c}`)}
-                >
-                  {c}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </nav>
+      <NavCategorias categorias={categorias} rutaActual={rutaActual} ir={ir} />
     </header>
   )
 }
+
+export default Navbar
