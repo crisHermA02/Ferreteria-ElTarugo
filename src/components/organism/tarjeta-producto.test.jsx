@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { TarjetaProducto } from './tarjeta-producto'
 
 describe('TarjetaProducto', () => {
@@ -17,7 +18,11 @@ describe('TarjetaProducto', () => {
       { id: 2, nombre: 'Arena Fina 25kg', precio: 2500, stock: 5, categoria: 'Obra Gruesa' },
     ]
 
-    render(<TarjetaProducto productos={listaMock} />)
+    render(
+      <MemoryRouter>
+        <TarjetaProducto productos={listaMock} />
+      </MemoryRouter>
+    )
 
     expect(screen.getByText('Ladrillo Prensado')).toBeInTheDocument()
     expect(screen.getByText('Arena Fina 25kg')).toBeInTheDocument()
