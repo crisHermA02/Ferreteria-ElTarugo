@@ -12,7 +12,7 @@ export function ControlStock({ stock = 0, onCambiar }) {
       >
         -
       </Boton>
-      <span className="fw-bold px-2 text-center" style={{ minWidth: '45px', display: 'inline-block' }}>
+      <span className="fw-bold px-3 text-center d-inline-block">
         {stock}
       </span>
       <Boton
