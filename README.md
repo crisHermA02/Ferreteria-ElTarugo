@@ -52,8 +52,10 @@ src/
 ```
 ## Covertura Test
 
-<img width="756" height="840" alt="{DC9FF535-C3D8-46F8-95A3-E352DAFF443F}" src="https://github.com/user-attachments/assets/32587915-42bf-49d4-be0c-d1b4f3dcb470" />
-<img width="742" height="651" alt="{FF8E1514-FD02-4428-8DBB-1A73B17EF96B}" src="https://github.com/user-attachments/assets/b47633a0-f5dc-46c2-a85f-3cc98dc91a35" />
+<img width="1147" height="851" alt="{D0FFD97B-90E9-410D-BD89-94C52E82BE5E}" src="https://github.com/user-attachments/assets/e585b2b6-ab95-4664-b99a-44313281c877" />
+<img width="1040" height="863" alt="{FD82CAC8-8D2C-41B3-B436-A5E7CC0DA9FC}" src="https://github.com/user-attachments/assets/ab2b9e33-8ddb-422d-bb79-435efbcab091" />
+<img width="1153" height="339" alt="{E8C0EF45-0259-4FE0-8EF7-149488696E5E}" src="https://github.com/user-attachments/assets/fcbd30f3-9fc0-4738-9865-c5ab4987bfb5" />
+
 
 ## Cómo Ejecutar el Proyecto
 Sigue estos pasos para configurar y correr la aplicación en tu entorno local.
