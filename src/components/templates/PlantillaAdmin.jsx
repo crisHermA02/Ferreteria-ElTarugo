@@ -27,7 +27,7 @@ export function PlantillaAdmin({ children }) {
     <div className="min-vh-100 d-flex flex-column bg-light">
       <header className="navbar navbar-dark bg-dark sticky-top px-3 py-2 border-bottom border-3 border-warning">
         <Link to="/admin" className="navbar-brand fw-bold text-warning m-0">
-          <img src="src/assets/img/logo-2.png" alt="Logo" className="me-2" height="100" />
+          <img src="/src/assets/img/logo-2.png" alt="Logo" className="me-2" height="100" />
           El Tarugo <span className="badge bg-secondary fs-6 ms-2">Admin</span>
         </Link>
         <div className="d-flex align-items-center gap-3">
