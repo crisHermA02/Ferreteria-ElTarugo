@@ -12,10 +12,15 @@ describe('productoService', () => {
     expect(lista.length).toBeGreaterThan(0)
   })
 
-  it('CrearProducto guarda un producto nuevo asignando un ID autoincremental', () => {
+  it('CrearProducto guarda un producto nuevo asignando un ID autoincremental y metadatos de auditoría', () => {
     const nuevo = crearProducto({ nombre: 'Casco de seguridad', precio: 8900 })
-    expect(nuevo.id).toBeGreaterThan(0)
-    expect(nuevo.nombre).toBe('Casco de seguridad')
+    
+    expect(nuevo).toEqual({
+      id: expect.any(Number),
+      nombre: 'Casco de seguridad',
+      precio: 8900,
+      fechaCreacion: expect.any(String)
+    })
   })
 
   it('ObtenerProducto retorna el producto correspondiente a un ID o null si no existe', () => {
