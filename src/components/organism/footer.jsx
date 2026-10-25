@@ -14,9 +14,6 @@ export function Footer() {
                     <Link to="/contacto" className="text-warning text-decoration-none small me-3">
                         Contacto y Ubicación
                     </Link>
-                    <Link to="/admin/productos" className="text-warning text-decoration-none small">
-                        Admin Productos
-                    </Link>
                 </div>
 
                 <p className="mb-0 small">&copy; Ferreteria el Tarugo- 2026</p>

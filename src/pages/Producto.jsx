@@ -125,7 +125,7 @@ export function Producto() {
               {!sinStock && (
                 <div className="d-flex align-items-center gap-3 mb-4">
                   <label htmlFor="cantidad" className="fw-semibold small text-muted">Cantidad:</label>
-                  <div className="input-group" style={{ maxWidth: '140px' }}>
+                  <div className="input-group w-50">
                     <button
                       className="btn btn-outline-secondary"
                       type="button"
