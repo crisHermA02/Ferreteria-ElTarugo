@@ -10,7 +10,6 @@
 - **Gestión de Pedidos:** Historial completo de compras para los usuarios.
 - **Roles del Sistema:** Vistas y paneles protegidos dependiendo del rol (Administrador, Vendedor, Cliente).
 - **Contacto:** Canales de comunicación directa e información de la tienda.
-
 ---
 
 ## Equipo de Desarrollo (Integrantes)
@@ -28,6 +27,11 @@ Este proyecto fue construido utilizando herramientas modernas de desarrollo web:
 * **Estilos y UI:** React Bootstrap (Bootstrap 5)
 * **Gestión de Estado:** React Context API (Productos, Carrito)
 * **Testing:** Vitest & React Testing Library
+
+---
+
+### Repositorio de backend.
+* https://github.com/crisHermA02/backend-eltarugo
 
 ---
 
