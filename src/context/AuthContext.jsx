@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import usuariosIniciales from '../data/usuarios.json'
 
 const AuthContext = createContext()
 
@@ -8,25 +7,16 @@ export function AuthProvider({ children }) {
     const [cargando, setCargando] = useState(true)
 
     useEffect(() => {
-        const guardados = JSON.parse(localStorage.getItem('tienda_usuarios') || '[]')
+        const sesionGuardada = localStorage.getItem('usuario_sesion')
+        const tokenGuardado = localStorage.getItem('token')
 
-        const existeAdmin = guardados.some((u) => u.email === 'admin@eltarugo.cl')
-
-        if (!existeAdmin) {
-            const todosLosUsuarios = [...guardados, ...usuariosIniciales]
-            const mapaUsuarios = new Map(todosLosUsuarios.map((u) => [u.email.toLowerCase(), u]))
-            const listaDefinitiva = Array.from(mapaUsuarios.values())
-
-            localStorage.setItem('tienda_usuarios', JSON.stringify(listaDefinitiva))
-        }
-
-        const sesionGuardada = localStorage.getItem('tienda_usuario')
-        if (sesionGuardada) {
+        if (sesionGuardada && tokenGuardado) {
             try {
                 setUsuario(JSON.parse(sesionGuardada))
             } catch (error) {
                 console.error('Error al leer la sesión:', error)
-                localStorage.removeItem('tienda_usuario')
+                localStorage.removeItem('usuario_sesion')
+                localStorage.removeItem('token')
             }
         }
         setCargando(false)
@@ -34,12 +24,13 @@ export function AuthProvider({ children }) {
 
     const login = (datosUsuario) => {
         setUsuario(datosUsuario)
-        localStorage.setItem('tienda_usuario', JSON.stringify(datosUsuario))
+        localStorage.setItem('usuario_sesion', JSON.stringify(datosUsuario))
     }
 
     const logout = () => {
         setUsuario(null)
-        localStorage.removeItem('tienda_usuario')
+        localStorage.removeItem('usuario_sesion')
+        localStorage.removeItem('token')
     }
 
     const valor = {
