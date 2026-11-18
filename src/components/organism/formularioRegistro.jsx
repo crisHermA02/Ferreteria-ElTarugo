@@ -28,7 +28,7 @@ export function FormularioRegistro(props) {
 
         const sinErrores = Object.values(nuevos).every((mensaje) => mensaje === '')
         if (sinErrores) {
-            props.onEnviar({ nombre: nombre.trim(), email: email.trim() })
+            props.onEnviar({ nombre: nombre.trim(), email: email.trim(), clave: clave.trim() })
         }
     }
 
