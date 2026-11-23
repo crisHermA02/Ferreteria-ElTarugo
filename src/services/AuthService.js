@@ -1,4 +1,4 @@
-const API_URL = 'http://44.218.174.107:3000/api/auth';
+const API_URL = import.meta.env.VITE_API_URL
 
 export async function autenticarUsuario(email, clave) {
   try {

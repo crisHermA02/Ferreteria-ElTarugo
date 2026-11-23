@@ -1,7 +1,14 @@
 import { Modal, Form, Button } from 'react-bootstrap'
 
+const ROLES_POR_ID = {
+  1: 'Administrador',
+  2: 'Cliente',
+  3: 'Contratista'
+}
+
 export function ModalUsuarioForm({ show, onHide, usuario, onGuardar }) {
   const esEdicion = Boolean(usuario)
+  const rolInicial = usuario?.rol || ROLES_POR_ID[usuario?.id_rol] || 'Cliente'
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -9,6 +16,8 @@ export function ModalUsuarioForm({ show, onHide, usuario, onGuardar }) {
     const datos = {
       nombre: formData.get('nombre'),
       email: formData.get('email'),
+      rut: formData.get('rut'),
+      telefono: formData.get('telefono'),
       rol: formData.get('rol'),
       direccion: formData.get('direccion'),
     }
@@ -29,10 +38,11 @@ export function ModalUsuarioForm({ show, onHide, usuario, onGuardar }) {
             <Form.Control
               type="text"
               name="nombre"
-              defaultValue={usuario?.nombre || ''}
+              defaultValue={usuario?.nombre_user || usuario?.nombre || ''}
               required
             />
           </Form.Group>
+
           <Form.Group className="mb-3">
             <Form.Label className="fw-semibold">Correo Electrónico</Form.Label>
             <Form.Control
@@ -43,18 +53,44 @@ export function ModalUsuarioForm({ show, onHide, usuario, onGuardar }) {
               disabled={esEdicion}
             />
           </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label className="fw-semibold">RUT</Form.Label>
+            <Form.Control
+              type="text"
+              name="rut"
+              placeholder="12.345.678-9"
+              defaultValue={usuario?.rut_user || usuario?.rut || ''}
+              required={!esEdicion}
+              disabled={esEdicion}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label className="fw-semibold">Teléfono</Form.Label>
+            <Form.Control
+              type="text"
+              name="telefono"
+              placeholder="+56 9 1234 5678"
+              defaultValue={usuario?.telefono_user || usuario?.telefono || ''}
+            />
+          </Form.Group>
+
           <Form.Group className="mb-3">
             <Form.Label className="fw-semibold">Rol</Form.Label>
-            <Form.Select name="rol" defaultValue={usuario?.rol || 'Cliente'}>
+            <Form.Select name="rol" defaultValue={rolInicial}>
               <option value="Cliente">Cliente</option>
               <option value="Administrador">Administrador</option>
+              <option value="Contratista">Contratista</option>
             </Form.Select>
           </Form.Group>
+
           <Form.Group className="mb-3">
             <Form.Label className="fw-semibold">Dirección</Form.Label>
             <Form.Control
               type="text"
               name="direccion"
+              placeholder="Alias, Calle y número, Comuna, Código postal"
               defaultValue={usuario?.direccion || ''}
             />
           </Form.Group>
