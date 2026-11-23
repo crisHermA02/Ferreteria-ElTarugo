@@ -1,6 +1,6 @@
 export function TarjetaMensaje({ icono, titulo, descripcion, children }) {
     return (
-        <div className="col-11 col-md-8 col-lg-6 col-xl-5 mx-auto">
+        <div className="w-100 mx-auto">
             <div className="card shadow border-0 p-4 p-md-5 rounded-4 text-center">
                 <div className="mb-4">
                     {icono}

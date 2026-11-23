@@ -1,108 +1,110 @@
 import { useState, useEffect } from 'react'
-import { Table, Card, Button, Badge } from 'react-bootstrap'
+import { Table, Card, Badge, Modal } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { PlantillaAdmin } from '../../components/templates/PlantillaAdmin'
 import { ModalUsuarioForm } from '../../components/molecules/ModalUsuarioForm'
+import { TarjetaMensaje } from '../../components/molecules/tarjeta-mensaje'
 import { useTituloPagina } from '../../hooks/useTituloPagina'
+import { Boton } from '../../components/atoms/boton'
+
+const API_URL = import.meta.env.VITE_API_URL + '/usuarios';
+
+const NOMBRES_ROLES = {
+  1: 'Administrador',
+  2: 'Cliente',
+  3: 'Contratista'
+};
 
 export function UsuariosAdmin() {
   useTituloPagina('Gestión de Usuarios')
   const navigate = useNavigate()
-
   const [usuarios, setUsuarios] = useState([])
   const [modalAbierto, setModalAbierto] = useState(false)
   const [usuarioEditar, setUsuarioEditar] = useState(null)
+  const [usuarioEliminar, setUsuarioEliminar] = useState(null)
 
-  useEffect(() => {
-    const guardados = JSON.parse(localStorage.getItem('tienda_usuarios') || '[]')
-    setUsuarios(guardados)
-  }, [])
+  const cargarUsuarios = async () => {
+    const token = localStorage.getItem('token')
+    const res = await fetch(API_URL, { headers: { 'Authorization': `Bearer ${token}` } })
+    if (res.ok) setUsuarios(await res.json())
+  }
 
-  function guardarUsuario(datos) {
-    let actualizados = []
-    if (usuarioEditar) {
-      actualizados = usuarios.map((u) =>
-        u.email === usuarioEditar.email ? { ...u, ...datos } : u
-      )
-    } else {
-      actualizados = [...usuarios, datos]
+  useEffect(() => { cargarUsuarios() }, [])
+
+  async function guardarUsuario(datos) {
+    const token = localStorage.getItem('token')
+    const url = usuarioEditar ? `${API_URL}/${usuarioEditar.id_user || usuarioEditar.id}` : API_URL
+    const metodo = usuarioEditar ? 'PUT' : 'POST'
+
+    const res = await fetch(url, {
+      method: metodo,
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify(datos)
+    })
+    if (res.ok) {
+      cargarUsuarios()
+      setModalAbierto(false)
     }
-    setUsuarios(actualizados)
-    localStorage.setItem('tienda_usuarios', JSON.stringify(actualizados))
-    setModalAbierto(false)
+  }
+
+  async function confirmarEliminacion() {
+    if (!usuarioEliminar) return
+    const id = usuarioEliminar.id_user || usuarioEliminar.id
+    const token = localStorage.getItem('token')
+    const res = await fetch(`${API_URL}/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    if (res.ok) {
+      cargarUsuarios()
+      setUsuarioEliminar(null)
+    }
   }
 
   return (
     <PlantillaAdmin>
-      <div className="d-flex flex-wrap justify-content-between align-items-center mb-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
-          <h2 className="h3 fw-bold text-dark mb-1">Gestión de Usuarios</h2>
+          <h2 className="h3 fw-bold mb-1">Gestión de Usuarios</h2>
           <p className="text-muted m-0">Administra los usuarios registrados en la plataforma.</p>
         </div>
-        <Button
-          variant="warning"
-          className="fw-bold"
-          onClick={() => {
-            setUsuarioEditar(null)
-            setModalAbierto(true)
-          }}
-        >
+        <Boton variant="warning" onClick={() => { setUsuarioEditar(null); setModalAbierto(true) }}>
           + Nuevo Usuario
-        </Button>
+        </Boton>
       </div>
 
-      <Card className="border-0 shadow-sm rounded-4 overflow-hidden">
+      <Card className="border-0 shadow-sm rounded-4">
         <Card.Body className="p-0">
-          <div className="table-responsive">
-            <Table hover className="align-middle mb-0">
-              <thead className="table-dark">
-                <tr>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                  <th>Rol</th>
-                  <th>Dirección</th>
-                  <th className="text-end">Acciones</th>
+          <Table hover className="align-middle mb-0">
+            <thead className="table-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th className="text-end">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {usuarios.map((u) => (
+                <tr key={u.id_user || u.email}>
+                  <td className="fw-bold">{u.nombre_user || u.nombre}</td>
+                  <td className="text-muted">{u.email}</td>
+                  <td>
+                    <Badge bg={u.id_rol === 1 || u.rol === 'Administrador' ? 'danger' : 'secondary'}>
+                      {NOMBRES_ROLES[u.id_rol] || u.rol || 'Cliente'}
+                    </Badge>
+                  </td>
+                  <td className="text-end">
+                    <div className="d-inline-flex gap-2">
+                      <Boton variant="outline-dark" onClick={() => navigate(`/admin/usuarios/${encodeURIComponent(u.email)}/pedidos`)}>Historial</Boton>
+                      <Boton variant="outline-primary" onClick={() => { setUsuarioEditar(u); setModalAbierto(true) }}>Editar</Boton>
+                      <Boton variant="outline-danger" onClick={() => setUsuarioEliminar(u)}>X</Boton>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {usuarios.map((u) => (
-                  <tr key={u.email}>
-                    <td className="fw-bold">{u.nombre}</td>
-                    <td className="text-muted">{u.email}</td>
-                    <td>
-                      <Badge bg={u.rol === 'Administrador' ? 'danger' : 'secondary'}>
-                        {u.rol || 'Cliente'}
-                      </Badge>
-                    </td>
-                    <td className="small">{u.direccion || 'No registrada'}</td>
-                    <td className="text-end">
-                      <div className="d-inline-flex gap-2">
-                        <Button
-                          variant="outline-dark"
-                          size="sm"
-                          onClick={() =>
-                            navigate(`/admin/usuarios/${encodeURIComponent(u.email)}/pedidos`)
-                          }
-                        >
-                            Ver Historial
-                        </Button>
-                        <Button
-                          variant="outline-primary"
-                          size="sm"
-                          onClick={() => {
-                            setUsuarioEditar(u)
-                            setModalAbierto(true)
-                          }}
-                        >
-                          Editar
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
+              ))}
+            </tbody>
+          </Table>
         </Card.Body>
       </Card>
 
@@ -112,6 +114,27 @@ export function UsuariosAdmin() {
         usuario={usuarioEditar}
         onGuardar={guardarUsuario}
       />
+
+      <Modal
+        show={Boolean(usuarioEliminar)}
+        onHide={() => setUsuarioEliminar(null)}
+        centered
+        contentClassName="bg-transparent border-0"
+      >
+        <TarjetaMensaje
+          titulo="¿Eliminar usuario?"
+          descripcion={`Estás a punto de eliminar a ${usuarioEliminar?.nombre_user || usuarioEliminar?.nombre}. Esta acción no se puede deshacer.`}
+        >
+          <div className="d-flex justify-content-center gap-3">
+            <Boton variant="outline-secondary" onClick={() => setUsuarioEliminar(null)}>
+              Cancelar
+            </Boton>
+            <Boton variant="danger" onClick={confirmarEliminacion}>
+              Sí, eliminar
+            </Boton>
+          </div>
+        </TarjetaMensaje>
+      </Modal>
     </PlantillaAdmin>
   )
 }
