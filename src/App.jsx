@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-// Páginas Públicas y Cliente
+import RutaProtegida from './components/molecules/RutaProtegida'
 import Inicio from './pages/Inicio'
 import Catalogo from './pages/Catalogo'
 import Producto from './pages/Producto'
@@ -14,7 +13,6 @@ import Ofertas from './pages/Ofertas'
 import Checkout from './pages/Checkout'
 import Resultado from './pages/Resultado'
 import MisPedidos from './pages/MisPedidos'
-
 import TableroAdmin from './pages/admin/TableroAdmin'
 import SolicitudesAdmin from './pages/admin/SolicitudesAdmin'
 import AdminProductos from './pages/admin/AdminProductos'
@@ -41,16 +39,16 @@ export default function App() {
         <Route path="/ofertas" element={<Ofertas />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/resultado" element={<Resultado />} />
-        <Route path="/mis-pedidos" element={<MisPedidos />} />
+        <Route path="/mis-pedidos" element={<RutaProtegida><MisPedidos /></RutaProtegida>} />
 
-        <Route path="/admin" element={<TableroAdmin />} />
-        <Route path="/admin/solicitudes" element={<SolicitudesAdmin />} />
-        <Route path="/admin/catalogo" element={<AdminProductos />} />
-        <Route path="/admin/items-criticos" element={<ItemCriticosAdmin />} />
-        <Route path="/admin/categorias" element={<CategoriasAdmin />} />
-        <Route path="/admin/usuarios" element={<UsuariosAdmin />} />
-        <Route path="/admin/usuarios/:email/pedidos" element={<HistorialUsuarioAdmin />} />
-        <Route path="/admin/reportes" element={<ReportesPerfilAdmin />} />
+        <Route path="/admin" element={<RutaProtegida soloAdmin><TableroAdmin /></RutaProtegida>} />
+        <Route path="/admin/solicitudes" element={<RutaProtegida soloAdmin><SolicitudesAdmin /></RutaProtegida>} />
+        <Route path="/admin/catalogo" element={<RutaProtegida soloAdmin><AdminProductos /></RutaProtegida>} />
+        <Route path="/admin/items-criticos" element={<RutaProtegida soloAdmin><ItemCriticosAdmin /></RutaProtegida>} />
+        <Route path="/admin/categorias" element={<RutaProtegida soloAdmin><CategoriasAdmin /></RutaProtegida>} />
+        <Route path="/admin/usuarios" element={<RutaProtegida soloAdmin><UsuariosAdmin /></RutaProtegida>} />
+        <Route path="/admin/usuarios/:email/pedidos" element={<RutaProtegida soloAdmin><HistorialUsuarioAdmin /></RutaProtegida>} />
+        <Route path="/admin/reportes" element={<RutaProtegida soloAdmin><ReportesPerfilAdmin /></RutaProtegida>} />
 
         <Route path="*" element={<NoEncontrada />} />
       </Routes>

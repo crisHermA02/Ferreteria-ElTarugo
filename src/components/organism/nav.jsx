@@ -33,31 +33,30 @@ export function Navbar(props) {
           </BarraBootstrap.Brand>
 
           <NavBuscador texto={texto} setTexto={setTexto} buscar={buscar} />
-
-          <a
-            href="/carrito"
-            data-carrito
-            onClick={(e) => ir(e, '/carrito')}
-            className="btn btn-outline-warning text-white d-flex align-items-center gap-2"
-            aria-label={`Carrito: ${props.totalItems ?? 0} artículos`}
-          >
-            <svg className="d-lg-none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <circle cx="9" cy="21" r="1" />
-              <circle cx="20" cy="21" r="1" />
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-            </svg>
-            <span className="d-none d-lg-inline">Carrito</span>
-            <Badge tone="marca">{props.totalItems ?? 0}</Badge>
-          </a>
           
           <BarraBootstrap.Toggle aria-controls="menu-principal" />
 
           <BarraBootstrap.Collapse id="menu-principal">
             <Nav className="gap-2 align-items-lg-center mt-3 mt-lg-0 ms-lg-auto">
               <Nav.Link href="/" onClick={(e) => ir(e, '/')}>Nosotros</Nav.Link>
-              <Nav.Link href="/contacto" onClick={(e) => ir(e, '/contacto')}>Contacto</Nav.Link>
               
               <NavMenuUsuario usuario={usuario} ir={ir} logout={logout} />
+
+              <a
+                href="/carrito"
+                data-carrito
+                onClick={(e) => ir(e, '/carrito')}
+                className="btn btn-sm btn-outline-warning text-white d-inline-flex align-items-center gap-2 ms-lg-2 mt-2 mt-lg-0"
+                aria-label={`Carrito: ${props.totalItems ?? 0} artículos`}
+              >
+                <svg className="d-lg-none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="9" cy="21" r="1" />
+                  <circle cx="20" cy="21" r="1" />
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg>
+                <span>Carrito</span>
+                <Badge tone="marca">{props.totalItems ?? 0}</Badge>
+              </a>
             </Nav>
           </BarraBootstrap.Collapse>
         </Container>

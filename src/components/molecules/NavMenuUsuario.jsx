@@ -8,6 +8,8 @@ export function NavMenuUsuario({ usuario, ir, logout }) {
   }
 
   if (usuario) {
+    const esAdmin = Number(usuario?.rol) === 1 || Number(usuario?.id_rol) === 1 || usuario?.rol === 'Administrador'
+
     return (
       <NavDropdown
         title={
@@ -16,13 +18,25 @@ export function NavMenuUsuario({ usuario, ir, logout }) {
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
-            <span>{usuario.nombre || 'Mi Cuenta'}</span>
+            <span>{usuario.nombre || usuario.nombre_user || 'Mi Cuenta'}</span>
           </span>
         }
         id="menu-usuario"
         align="end"
         className="ms-lg-2"
       >
+        {esAdmin && (
+          <>
+            <NavDropdown.Item
+              href="/admin"
+              onClick={(e) => ir(e, '/admin')}
+              className="fw-bold text-dark"
+            >
+              Panel Admin
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+          </>
+        )}
         <NavDropdown.Item href="/mis-pedidos" onClick={(e) => ir(e, '/mis-pedidos')}>
           Mis Pedidos
         </NavDropdown.Item>
