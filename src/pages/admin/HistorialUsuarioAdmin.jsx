@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap'
 import { PlantillaAdmin } from '../../components/templates/PlantillaAdmin'
 import { TablaSolicitudes } from '../../components/molecules/tabla-solicitudes'

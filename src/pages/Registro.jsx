@@ -4,10 +4,12 @@ import { Alert } from 'react-bootstrap'
 import { PlantillaPublica } from '../components/templates/PlantillaPublica'
 import { FormularioRegistro } from '../components/organism/formularioRegistro'
 import { useTituloPagina } from '../hooks/useTituloPagina'
-import { registrarUsuario } from '../services/AuthService'
+import { useAuth } from '../context/AuthContext'
+import { registrarUsuario, autenticarUsuario } from '../services/AuthService'
 
 export default function Registro() {
   const navigate = useNavigate()
+  const { login } = useAuth()
   useTituloPagina('Crear cuenta')
 
   const [error, setError] = useState('')
@@ -29,9 +31,18 @@ export default function Registro() {
 
     if (resultado.ok) {
       setExito(true)
-      setTimeout(() => {
-        navigate('/login')
-      }, 2000)
+      const resLogin = await autenticarUsuario(email, clave)
+
+      if (resLogin.ok && resLogin.usuario) {
+        login(resLogin.usuario)
+        setTimeout(() => {
+          navigate('/')
+        }, 1200)
+      } else {
+        setTimeout(() => {
+          navigate('/login')
+        }, 1500)
+      }
     } else {
       setError(resultado.mensaje)
     }
@@ -57,7 +68,7 @@ export default function Registro() {
 
               {exito && (
                 <Alert variant="success">
-                  Cuenta creada exitosamente. Redirigiendo al login...
+                  Cuenta creada exitosamente. Ingresando a la tienda...
                 </Alert>
               )}
 

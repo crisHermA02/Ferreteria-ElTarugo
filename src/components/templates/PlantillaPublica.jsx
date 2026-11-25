@@ -15,7 +15,7 @@ export function PlantillaPublica(props) {
   const carrito = useCarrito()
   const { usuario } = useAuth()
 
-  const esAdmin = usuario?.rol === 'Administrador'
+const esAdmin = Number(usuario?.rol) === 1 || Number(usuario?.id_rol) === 1 || usuario?.rol === 'Administrador'
 
   return (
     <>
@@ -41,7 +41,6 @@ export function PlantillaPublica(props) {
         totalItems={carrito.totalItems}
         onNavegar={navigate}
         rutaActual={ubicacion.pathname}
-
         onBuscar={(texto) => navigate(`/buscar/${encodeURIComponent(texto)}`)}
       />
       <Container as="main" className="tienda-main">
