@@ -6,16 +6,16 @@ export function usePedidos() {
     const [pedidos, setPedidos] = useState([])
 
     useEffect(() => {
-        const todosLosPedidos = JSON.parse(localStorage.getItem('tienda_pedidos') || '[]')
-        
-        if (usuario?.email) {
-            const pedidosUsuario = todosLosPedidos.filter(
-                (p) => p.cliente?.email === usuario.email
-            )
-            setPedidos(pedidosUsuario)
-        } else {
-            setPedidos(todosLosPedidos)
+        if (!usuario?.email) {
+            setPedidos([])
+            return
         }
+
+        const todosLosPedidos = JSON.parse(localStorage.getItem('tienda_pedidos') || '[]')
+        const emailUsuario = usuario.email.toLowerCase()
+        setPedidos(
+            todosLosPedidos.filter((p) => p.cliente?.email?.toLowerCase() === emailUsuario)
+        )
     }, [usuario])
 
     return { pedidos }

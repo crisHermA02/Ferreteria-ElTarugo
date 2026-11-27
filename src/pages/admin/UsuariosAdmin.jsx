@@ -22,6 +22,7 @@ export function UsuariosAdmin() {
   const [usuarioEditar, setUsuarioEditar] = useState(null)
   const [usuarioEliminar, setUsuarioEliminar] = useState(null)
   const [error, setError] = useState('')
+  const [claveTemporal, setClaveTemporal] = useState(null)
 
   const cargarUsuarios = async () => {
     try {
@@ -40,7 +41,10 @@ export function UsuariosAdmin() {
       if (usuarioEditar) {
         await api.put(`/usuarios/${usuarioEditar.id_user || usuarioEditar.id}`, datos)
       } else {
-        await api.post('/usuarios', datos)
+        const { data } = await api.post('/usuarios', datos)
+        if (data.contrasena_temporal) {
+          setClaveTemporal({ email: data.usuario.email, clave: data.contrasena_temporal })
+        }
       }
       cargarUsuarios()
       setModalAbierto(false)
@@ -74,6 +78,13 @@ export function UsuariosAdmin() {
           + Nuevo Usuario
         </Boton>
       </div>
+
+      {claveTemporal && (
+        <Alert variant="warning" dismissible onClose={() => setClaveTemporal(null)}>
+          Contraseña temporal para <strong>{claveTemporal.email}</strong>:{' '}
+          <code>{claveTemporal.clave}</code>. Entrégasela al usuario: no se vuelve a mostrar.
+        </Alert>
+      )}
 
       {error && (
         <Alert variant="danger" dismissible onClose={() => setError('')}>
