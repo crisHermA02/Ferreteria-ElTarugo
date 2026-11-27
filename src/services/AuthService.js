@@ -1,57 +1,30 @@
-const API_URL = import.meta.env.VITE_API_URL
+import { api, obtenerMensajeError } from './api'
 
 export async function autenticarUsuario(email, clave) {
   try {
-    const respuesta = await fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, contrasena: clave })
-    });
+    const { data } = await api.post('/auth/login', { email, contrasena: clave })
 
-    const data = await respuesta.json();
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('usuario_sesion', JSON.stringify(data.usuario))
 
-    if (respuesta.ok) {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('usuario_sesion', JSON.stringify(data.usuario));
-
-      return { ok: true, usuario: data.usuario };
-    }
-
-    return { ok: false, mensaje: data.error || 'Credenciales inválidas' };
-
+    return { ok: true, usuario: data.usuario }
   } catch (error) {
-    console.error('Error conectando al backend:', error);
-    return { ok: false, mensaje: 'Error de conexión con el servidor' };
+    console.error('Error en el login:', error)
+    return { ok: false, mensaje: obtenerMensajeError(error) }
   }
 }
 
 export function cerrarSesion() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('usuario_sesion');
+  localStorage.removeItem('token')
+  localStorage.removeItem('usuario_sesion')
 }
 
 export async function registrarUsuario(usuarioDatos) {
   try {
-    const respuesta = await fetch(`${API_URL}/auth/registro`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(usuarioDatos)
-    });
-
-    const data = await respuesta.json();
-
-    if (respuesta.ok) {
-      return { ok: true, mensaje: data.mensaje };
-    }
-
-    return { ok: false, mensaje: data.error || 'Error al registrar el usuario' };
-
+    const { data } = await api.post('/auth/registro', usuarioDatos)
+    return { ok: true, mensaje: data.mensaje }
   } catch (error) {
-    console.error('Error conectando al backend:', error);
-    return { ok: false, mensaje: 'Error de conexión con el servidor' };
+    console.error('Error en el registro:', error)
+    return { ok: false, mensaje: obtenerMensajeError(error) }
   }
 }

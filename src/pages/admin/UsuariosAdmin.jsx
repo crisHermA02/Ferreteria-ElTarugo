@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Table, Card, Badge, Modal } from 'react-bootstrap'
+import { Table, Card, Badge, Modal, Alert } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { PlantillaAdmin } from '../../components/templates/PlantillaAdmin'
 import { ModalUsuarioForm } from '../../components/molecules/ModalUsuarioForm'
 import { TarjetaMensaje } from '../../components/molecules/tarjeta-mensaje'
 import { useTituloPagina } from '../../hooks/useTituloPagina'
 import { Boton } from '../../components/atoms/boton'
-
-const API_URL = import.meta.env.VITE_API_URL + '/usuarios';
+import { api, obtenerMensajeError } from '../../services/api'
 
 const NOMBRES_ROLES = {
   1: 'Administrador',
@@ -22,41 +21,44 @@ export function UsuariosAdmin() {
   const [modalAbierto, setModalAbierto] = useState(false)
   const [usuarioEditar, setUsuarioEditar] = useState(null)
   const [usuarioEliminar, setUsuarioEliminar] = useState(null)
+  const [error, setError] = useState('')
 
   const cargarUsuarios = async () => {
-    const token = localStorage.getItem('token')
-    const res = await fetch(API_URL, { headers: { 'Authorization': `Bearer ${token}` } })
-    if (res.ok) setUsuarios(await res.json())
+    try {
+      const { data } = await api.get('/usuarios')
+      setUsuarios(data)
+    } catch (err) {
+      setError(obtenerMensajeError(err))
+    }
   }
 
   useEffect(() => { cargarUsuarios() }, [])
 
   async function guardarUsuario(datos) {
-    const token = localStorage.getItem('token')
-    const url = usuarioEditar ? `${API_URL}/${usuarioEditar.id_user || usuarioEditar.id}` : API_URL
-    const metodo = usuarioEditar ? 'PUT' : 'POST'
-
-    const res = await fetch(url, {
-      method: metodo,
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-      body: JSON.stringify(datos)
-    })
-    if (res.ok) {
+    setError('')
+    try {
+      if (usuarioEditar) {
+        await api.put(`/usuarios/${usuarioEditar.id_user || usuarioEditar.id}`, datos)
+      } else {
+        await api.post('/usuarios', datos)
+      }
       cargarUsuarios()
       setModalAbierto(false)
+    } catch (err) {
+      setError(obtenerMensajeError(err))
     }
   }
 
   async function confirmarEliminacion() {
     if (!usuarioEliminar) return
     const id = usuarioEliminar.id_user || usuarioEliminar.id
-    const token = localStorage.getItem('token')
-    const res = await fetch(`${API_URL}/${id}`, {
-      method: 'DELETE',
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-    if (res.ok) {
+    setError('')
+    try {
+      await api.delete(`/usuarios/${id}`)
       cargarUsuarios()
+      setUsuarioEliminar(null)
+    } catch (err) {
+      setError(obtenerMensajeError(err))
       setUsuarioEliminar(null)
     }
   }
@@ -72,6 +74,12 @@ export function UsuariosAdmin() {
           + Nuevo Usuario
         </Boton>
       </div>
+
+      {error && (
+        <Alert variant="danger" dismissible onClose={() => setError('')}>
+          <strong>Error:</strong> {error}
+        </Alert>
+      )}
 
       <Card className="border-0 shadow-sm rounded-4">
         <Card.Body className="p-0">
