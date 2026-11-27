@@ -28,3 +28,8 @@ export async function registrarUsuario(usuarioDatos) {
     return { ok: false, mensaje: obtenerMensajeError(error) }
   }
 }
+
+export async function obtenerSesion() {
+  const { data } = await api.get('/auth/me')
+  return data.usuario
+}

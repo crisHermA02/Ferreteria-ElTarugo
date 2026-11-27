@@ -5,7 +5,6 @@ export const api = axios.create({
   timeout: 10000
 });
 
-
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -14,6 +13,19 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+api.interceptors.response.use(
+  (respuesta) => respuesta,
+  (error) => {
+    const url = error.config?.url || '';
+    const esLogin = url.includes('/auth/login');
+    if (error.response?.status === 401 && !esLogin && localStorage.getItem('token')) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('usuario_sesion');
+      window.dispatchEvent(new Event('sesion-expirada'));
+    }
+    return Promise.reject(error);
+  }
+);
 
 export function obtenerMensajeError(error) {
   if (error.response) {

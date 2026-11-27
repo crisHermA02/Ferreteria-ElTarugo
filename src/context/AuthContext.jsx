@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { obtenerSesion, cerrarSesion } from '../services/AuthService'
 
 const AuthContext = createContext()
 
@@ -7,19 +8,48 @@ export function AuthProvider({ children }) {
     const [cargando, setCargando] = useState(true)
 
     useEffect(() => {
-        const sesionGuardada = localStorage.getItem('usuario_sesion')
-        const tokenGuardado = localStorage.getItem('token')
+        let activo = true
 
-        if (sesionGuardada && tokenGuardado) {
-            try {
-                setUsuario(JSON.parse(sesionGuardada))
-            } catch (error) {
-                console.error('Error al leer la sesión:', error)
+        async function revalidarSesion() {
+            const token = localStorage.getItem('token')
+            if (!token) {
                 localStorage.removeItem('usuario_sesion')
-                localStorage.removeItem('token')
+                if (activo) setCargando(false)
+                return
+            }
+
+            try {
+                const sesion = await obtenerSesion()
+                if (!activo) return
+                setUsuario(sesion)
+                localStorage.setItem('usuario_sesion', JSON.stringify(sesion))
+            } catch (error) {
+                if (!activo) return
+                if (error.response?.status === 401) {
+                    cerrarSesion()
+                    setUsuario(null)
+                } else {
+
+                    try {
+                        setUsuario(JSON.parse(localStorage.getItem('usuario_sesion')))
+                    } catch {
+                        cerrarSesion()
+                    }
+                }
+            } finally {
+                if (activo) setCargando(false)
             }
         }
-        setCargando(false)
+
+        revalidarSesion()
+
+        const alExpirar = () => setUsuario(null)
+        window.addEventListener('sesion-expirada', alExpirar)
+
+        return () => {
+            activo = false
+            window.removeEventListener('sesion-expirada', alExpirar)
+        }
     }, [])
 
     const login = (datosUsuario) => {
@@ -29,8 +59,7 @@ export function AuthProvider({ children }) {
 
     const logout = () => {
         setUsuario(null)
-        localStorage.removeItem('usuario_sesion')
-        localStorage.removeItem('token')
+        cerrarSesion()
     }
 
     const valor = {
